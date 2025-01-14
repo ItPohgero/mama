@@ -1,0 +1,26 @@
+{
+  "name": "mama",
+  "version": "1.0.0",
+  "description": "My custom CLI tool",
+  "main": "bin/index.ts",
+  "bin": {
+    "mama": "bin/index.ts"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "bun build bin/index.ts --outdir bin",
+    "start": "bun bin/index.ts"
+  },
+  "dependencies": {
+    "@types/figlet": "^1.7.0",
+    "chalk": "^5.4.1",
+    "commander": "^13.0.0",
+    "figlet": "^1.8.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

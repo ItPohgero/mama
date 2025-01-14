@@ -1,7 +1,7 @@
 {
 	"name": "mama",
 	"version": "1.0.0",
-	"description": "My custom CLI tool",
+	"description": "Mama CLI : Make better for development",
 	"main": "bin/index.ts",
 	"bin": {
 		"mama": "bin/index.ts"

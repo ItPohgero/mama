@@ -1,6 +1,6 @@
 {
-	"name": "mama",
-	"version": "1.0.0",
+	"name": "mama-cli",
+	"version": "1.0.1",
 	"description": "Mama CLI : Make better for development",
 	"main": "bin/index.ts",
 	"bin": {

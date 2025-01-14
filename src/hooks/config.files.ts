@@ -1,31 +1,40 @@
 import fs from "node:fs";
 import chalk from "chalk";
 
-const mamaConfigCreate = (
+interface Config {
+	dir?: Record<string, string>;
+	[key: string]: unknown;
+}
+
+const createConfig = (
 	filePath: string,
 	config: Record<string, unknown>,
 ): void => {
 	if (fs.existsSync(filePath)) {
-		console.log(chalk.red(`❌ File konfigurasi sudah ada: ${filePath}`));
+		console.log(chalk.red(`❌ Configuration file already exists: ${filePath}`));
 		return;
 	}
 	fs.writeFileSync(filePath, JSON.stringify(config, null, 2));
-	console.log(chalk.green(`✅ File konfigurasi berhasil dibuat: ${filePath}`));
+	console.log(
+		chalk.green(`✅ Configuration file created successfully: ${filePath}`),
+	);
 };
 
-const mamaConfigUpdate = (
+const updateConfig = (
 	filePath: string,
 	updater: (config: Record<string, unknown>) => Record<string, unknown>,
 ): void => {
-	const config = mamaConfigRead(filePath) || {};
+	const config = readConfig(filePath) || {};
 	const updatedConfig = updater(config);
 	fs.writeFileSync(filePath, JSON.stringify(updatedConfig, null, 2));
-	console.log(chalk.green(`✅ Konfigurasi berhasil diperbarui: ${filePath}`));
+	console.log(
+		chalk.green(`✅ Configuration updated successfully: ${filePath}`),
+	);
 };
 
-const mamaConfigRead = (filePath: string): Record<string, unknown> | null => {
+const readConfig = (filePath: string): Config | null => {
 	if (!fs.existsSync(filePath)) {
-		console.log(chalk.red(`❌ Konfigurasi tidak ditemukan di: ${filePath}`));
+		console.log(chalk.red(`❌ Configuration not found at: ${filePath}`));
 		return null;
 	}
 
@@ -33,4 +42,4 @@ const mamaConfigRead = (filePath: string): Record<string, unknown> | null => {
 	return JSON.parse(rawData);
 };
 
-export { mamaConfigCreate, mamaConfigUpdate, mamaConfigRead };
+export { createConfig, updateConfig, readConfig };

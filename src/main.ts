@@ -3,11 +3,7 @@ import path from "node:path";
 import chalk, { type ChalkInstance } from "chalk";
 import { Command } from "commander";
 import pkg from "../package.json" assert { type: "json" };
-import {
-	mamaConfigCreate,
-	mamaConfigRead,
-	mamaConfigUpdate,
-} from "./hooks/config.files";
+import { createConfig, readConfig, updateConfig } from "./hooks/config.files";
 import banner from "./interfaces/banner";
 import handleError from "./utils/error";
 
@@ -52,7 +48,7 @@ export function run(): void {
 			.argument("<type>", "Tipe yang akan digenerate (component/hook)")
 			.argument("<name>", "Nama file yang akan digenerate")
 			.action((type: string, name: string) => {
-				let config = mamaConfigRead(configFilePath);
+				let config = readConfig(configFilePath);
 				if (!config) {
 					console.log(
 						chalk.red(
@@ -62,8 +58,9 @@ export function run(): void {
 					return;
 				}
 
-				// Periksa apakah direktori untuk tipe sudah ada
-				const directory = config.dir?.[type];
+				const directory = (config.dir as Record<string, string> | undefined)?.[
+					type
+				];
 				if (!directory) {
 					const newDir = `src/mama/${type}s`;
 					console.log(
@@ -72,19 +69,18 @@ export function run(): void {
 						),
 					);
 
-					// Tambahkan tipe baru ke konfigurasi dan buat direktori
-					mamaConfigUpdate(configFilePath, (currentConfig) => {
+					updateConfig(configFilePath, (currentConfig) => {
 						currentConfig.dir = {
-							...currentConfig.dir,
+							...(currentConfig.dir as Record<string, string>),
 							[type]: newDir,
 						};
 						return currentConfig;
 					});
 
-					config = mamaConfigRead(configFilePath); // Perbarui konfigurasi setelah menulis
+					config = readConfig(configFilePath); // Perbarui konfigurasi setelah menulis
 				}
 
-				const finalDir = config?.dir?.[type];
+				const finalDir = (config?.dir as Record<string, string>)?.[type];
 				const targetPath = path.join(process.cwd(), finalDir, `${name}.ts`);
 				fs.mkdirSync(path.dirname(targetPath), { recursive: true });
 				fs.writeFileSync(targetPath, `// ${type}: ${name}\n`);
@@ -107,7 +103,7 @@ export function run(): void {
 				};
 
 				const filePath = path.join(process.cwd(), "mama.json");
-				mamaConfigCreate(filePath, config);
+				createConfig(filePath, config);
 			});
 
 		// Parse arguments

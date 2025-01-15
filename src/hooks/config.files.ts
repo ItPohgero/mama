@@ -19,6 +19,7 @@ import yaml from "yaml";
  * @property {unknown} [key: string] - Additional dynamic properties
  */
 interface Config {
+	type?: string;
 	dir?: Record<string, string>;
 	[key: string]: unknown;
 }
@@ -117,7 +118,6 @@ const readConfig = (filePath: string): Config | null => {
 	try {
 		// Check if file exists
 		if (!fs.existsSync(filePath)) {
-			console.log(chalk.red(`❌ Configuration not found at: ${filePath}`));
 			return null;
 		}
 

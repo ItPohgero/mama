@@ -40,10 +40,12 @@ export function run(): void {
 	try {
 		const program = new Command();
 		banner();
+		const config = readConfig(File.Config);
 		// Set the program's name, description, version, and options
+		const desc = config?.type ? chalk.yellow(`type : ${config?.type}`) : "Please init first with `mama init`";
 		program
 			.name("mama")
-			.description(chalk.yellow(`© ${new Date().getFullYear()} mataramandev`))
+			.description(chalk.yellow(desc))
 			.version(env.version, "-v, --version", wording.mama.version)
 			.showHelpAfterError(chalk.red(wording.mama.showHelpAfterError))
 			.helpOption("-h, --help", wording.mama.helpOption);

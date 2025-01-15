@@ -5,5 +5,5 @@ export const env = {
 	author: pkg.author,
 	version: pkg.version,
 	configFile: ".mama.yaml",
-	wordingFile: "src/.wording.yaml",
+	wordingFile: "src/i18n/.text.yaml",
 };

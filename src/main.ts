@@ -5,7 +5,7 @@ import { Command } from "commander";
 import pkg from "../package.json" assert { type: "json" };
 import File from "./configs/files";
 import { createConfig, readConfig, updateConfig } from "./hooks/config.files";
-import banner from "./interfaces/banner";
+import banner from "./modules/banner";
 import handleError from "./utils/error";
 import { wording } from "./wording/main";
 

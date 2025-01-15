@@ -1,7 +1,7 @@
 const TypeOptionsData = [
 	"next",
-	"next-fullstack",
-	"bun-hono",
+	"next_fullstack",
+	"bun_hono",
 	"flutter",
 	"golang",
 ] as const;

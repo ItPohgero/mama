@@ -18,7 +18,7 @@ const TEMPLATES: Record<TypeOptions, TemplateConfig> = {
 		installCommand: "pnpm install",
 		startCommand: "pnpm run dev",
 	},
-	"next-fullstack": {
+	next_fullstack: {
 		repo: "dev-mataraman/mama-nextjs-fullstack",
 		installCommand: "bun install",
 		startCommand: "bun run dev",
@@ -28,7 +28,7 @@ const TEMPLATES: Record<TypeOptions, TemplateConfig> = {
 		installCommand: "flutter pub get",
 		startCommand: "flutter run",
 	},
-	"bun-hono": {
+	bun_hono: {
 		repo: "dev-mataraman/mama-bun-hono",
 		installCommand: "bun install",
 		startCommand: "bun run dev",
@@ -100,7 +100,7 @@ const PROJECT_CHOICES: readonly ProjectChoice[] = [
 	},
 	{
 		name: "Fullstack NextJs",
-		value: "next-fullstack",
+		value: "next_fullstack",
 	},
 	{
 		name: "Mobile Flutter",
@@ -108,7 +108,7 @@ const PROJECT_CHOICES: readonly ProjectChoice[] = [
 	},
 	{
 		name: "Service (Bun + Hono)",
-		value: "bun-hono",
+		value: "bun_hono",
 	},
 	{
 		name: "Service (Golang)",

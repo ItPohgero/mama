@@ -52,9 +52,12 @@ class CLIProgram {
 			return;
 		}
 
-		const commandHandlers = {
+		const commandHandlers: Record<TypeOptions, () => void> = {
 			next: () => NextCommands(this.program),
-			"next-fullstack": () => NextFullstackCommands(this.program),
+			next_fullstack: () => NextFullstackCommands(this.program),
+			bun_hono: () => {},
+			flutter: () => {},
+			golang: () => {},
 		};
 
 		const handler = commandHandlers[type as keyof typeof commandHandlers];

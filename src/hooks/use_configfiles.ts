@@ -9,9 +9,9 @@
  */
 
 import fs from "node:fs";
+import type { TypeOptions } from "@/configs/type";
 import chalk from "chalk";
 import yaml from "yaml";
-import type { TypeOptions } from "../configs/type";
 
 /**
  * Configuration interface defining the structure of the config file

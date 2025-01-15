@@ -17,19 +17,18 @@
  * @description The main function that sets up and runs the Mama CLI tool.
  */
 
+import { Create } from "@/app/create";
+import Init from "@/app/init";
+import { NextFullstackCommands } from "@/app/next-fullstack/commands";
+import { NextCommands } from "@/app/next/commands";
+import { env } from "@/configs/environtment";
+import { useReadConfig } from "@/hooks/use_configfiles";
+import { useConfigValidation } from "@/hooks/use_configvalidation";
+import { useWording } from "@/hooks/use_wording";
+import banner from "@/modules/banner";
+import handleError from "@/utils/error";
 import chalk from "chalk";
 import { Command } from "commander";
-import { Create } from "./app/create";
-import Init from "./app/init";
-import { NextFullstackCommands } from "./app/next-fullstack/commands";
-import { NextCommands } from "./app/next/commands";
-import { env } from "./configs/environtment";
-import File from "./configs/files";
-import { useReadConfig } from "./hooks/use_configfiles";
-import { useConfigValidation } from "./hooks/use_configvalidation";
-import banner from "./modules/banner";
-import handleError from "./utils/error";
-import { wording } from "./wording/main";
 
 /**
  * Initializes and runs the Mama CLI program by configuring commands, version, help options,
@@ -43,15 +42,16 @@ export function run(): void {
 		const program = new Command();
 		banner();
 		const config = useReadConfig(env.configFile);
+		const word = useWording();
 		const { message, type, isValid } = useConfigValidation(config);
 		program
 			.name("mama")
 			.description(chalk.yellow(message))
-			.version(env.version, "-v, --version", wording.mama.version)
-			.showHelpAfterError(chalk.red(wording.mama.showHelpAfterError))
-			.helpOption("-h, --help", wording.mama.helpOption);
+			.version(env.version, "-v, --version", word.mama.version)
+			.showHelpAfterError(chalk.red(word.mama.showHelpAfterError))
+			.helpOption("-h, --help", word.mama.helpOption);
 
-		program.command("init").description(wording.init.description).action(Init);
+		program.command("init").description(word.init.description).action(Init);
 		if (isValid) {
 			switch (type) {
 				case "next":

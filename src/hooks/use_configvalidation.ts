@@ -3,11 +3,11 @@
  * @description Hook for handling configuration validation and message formatting
  */
 
+import { TypeOptionsData } from "@/configs/type";
+import { useCheckType } from "@/hooks/use_checktype";
+import type { Config } from "@/hooks/use_configfiles";
+import type { ValidationResult } from "@/types/configvalidation.type";
 import chalk from "chalk";
-import { TypeOptionsData } from "../configs/type";
-import type { ValidationResult } from "../types/configvalidation.type";
-import { useCheckType } from "./use_checktype";
-import type { Config } from "./use_configfiles";
 
 /**
  * Hook to validate configuration type and generate appropriate messages

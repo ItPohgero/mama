@@ -1,4 +1,4 @@
-import type { TypeOptions } from "../configs/type";
+import type { TypeOptions } from "@/configs/type";
 
 export interface Config {
 	type?: string;

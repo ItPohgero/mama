@@ -2,7 +2,7 @@ import type { ChalkInstance } from "chalk";
 import chalk from "chalk";
 import type { Command } from "commander";
 
-export const NextCommands = (program: Command) => {
+export const CommandsNext = (program: Command) => {
 	program
 		.command("hello")
 		.description("Display a greeting message") // Command description

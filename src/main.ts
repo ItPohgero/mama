@@ -1,7 +1,7 @@
-import { Create } from "@/app/create";
-import Init from "@/app/init";
-import { NextFullstackCommands } from "@/app/next-fullstack/commands";
-import { NextCommands } from "@/app/next/commands";
+import { Create } from "@/commands/create";
+import Init from "@/commands/init";
+import { CommandsNextFullstack } from "@/commands/next-fullstack/command";
+import { CommandsNext } from "@/commands/next/command";
 import { env } from "@/configs/environtment";
 import { useReadConfig } from "@/hooks/use_configfiles";
 import { useConfigValidation } from "@/hooks/use_configvalidation";
@@ -10,6 +10,9 @@ import banner from "@/modules/banner";
 import handleError from "@/utils/error";
 import chalk from "chalk";
 import { Command } from "commander";
+import { CommandsBunHono } from "./commands/bun-hono/command";
+import { CommandsFlutter } from "./commands/flutter/command";
+import { CommandsGolang } from "./commands/golang/command";
 import type { TypeOptions } from "./configs/type";
 
 interface ProgramConfig {
@@ -53,11 +56,11 @@ class CLIProgram {
 		}
 
 		const commandHandlers: Record<TypeOptions, () => void> = {
-			next: () => NextCommands(this.program),
-			next_fullstack: () => NextFullstackCommands(this.program),
-			bun_hono: () => {},
-			flutter: () => {},
-			golang: () => {},
+			next: () => CommandsNext(this.program),
+			next_fullstack: () => CommandsNextFullstack(this.program),
+			bun_hono: () => CommandsBunHono(this.program),
+			flutter: () => CommandsFlutter(this.program),
+			golang: () => CommandsGolang(this.program),
 		};
 
 		const handler = commandHandlers[type as keyof typeof commandHandlers];

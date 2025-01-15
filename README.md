@@ -7,8 +7,6 @@
     </picture>
   </a>
 </p>
-<p align="center" style="font-size: 3rem; font-weight: bold;">MAMA-CLI</p>
-
 <p align="center">
   Like a mama who helps her child grow.
 </p>

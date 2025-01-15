@@ -1,4 +1,4 @@
-type TypeOptions = "next" | "next-fullstack" | "bun-hono" | "flutter";
+import type { TypeOptions } from "../types/main";
 
 const VALID_TYPES: TypeOptions[] = [
 	"next",

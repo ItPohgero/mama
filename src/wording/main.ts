@@ -5,6 +5,12 @@ export const wording = {
 		helpOption: "Display help for commands",
 	},
 	init: {
-		description: "Initialize a new project",
+		description: "Initialize for existing project",
 	},
+	create: {
+		description: "Create a new application project",
+		argument: {
+			name: "Name of the application"
+		}
+	}
 };

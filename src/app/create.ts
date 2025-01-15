@@ -3,9 +3,9 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import type { Command } from "commander";
 import inquirer from "inquirer";
+import { wording } from "../wording/main";
+import type { TypeOptions } from "../types/main";
 
-// Define template repositories
-type ProjectType = "next" | "next-fullstack" | "flutter";
 
 interface TemplateConfig {
 	readonly repo: string;
@@ -13,7 +13,7 @@ interface TemplateConfig {
 	readonly startCommand: string;
 }
 
-const TEMPLATES: Record<ProjectType, TemplateConfig> = {
+const TEMPLATES: Record<TypeOptions, TemplateConfig> = {
 	next: {
 		repo: "ItPohgero/next-architecture",
 		installCommand: "pnpm install",
@@ -29,17 +29,22 @@ const TEMPLATES: Record<ProjectType, TemplateConfig> = {
 		installCommand: "flutter pub get",
 		startCommand: "flutter run",
 	},
+    "bun-hono": {
+        repo: "ItPohgero/bun-hono-template",
+        installCommand: "bun install",
+        startCommand: "bun run dev",
+    }
 } as const;
 
 // Define project choice interface
 interface ProjectChoice {
 	readonly name: string;
-	readonly value: ProjectType;
+	readonly value: TypeOptions;
 }
 
 // Define prompt result type
 interface PromptResult {
-	readonly projectType: ProjectType;
+	readonly TypeOptions: TypeOptions;
 }
 
 // Define package.json interface
@@ -58,8 +63,8 @@ const checkDegit = async (): Promise<void> => {
 	}
 };
 
-const createProject = (projectType: ProjectType, name: string): void => {
-	const template = TEMPLATES[projectType];
+const createProject = (TypeOptions: TypeOptions, name: string): void => {
+	const template = TEMPLATES[TypeOptions];
 	execSync(`degit ${template.repo} ${name}`, {
 		stdio: "inherit",
 	});
@@ -86,59 +91,50 @@ const updatePackageJson = (projectPath: string, newName: string): void => {
 
 const PROJECT_CHOICES: readonly ProjectChoice[] = [
 	{
-		name: "Next.js (Basic)",
+		name: "Frontend Next",
 		value: "next",
 	},
 	{
-		name: "Next.js Fullstack",
+		name: "Fullstack Next",
 		value: "next-fullstack",
 	},
 	{
-		name: "Flutter",
+		name: "Mobile Flutter",
 		value: "flutter",
+	},
+	{
+		name: "Service (Bun + Hono)",
+		value: "bun-hono",
 	},
 ] as const;
 
 export const Create = (program: Command): void => {
 	program
 		.command("create")
-		.description("Create a new application")
-		.argument("<name>", "Name of the application")
+		.description(wording.create.description)
+		.argument("<name>", wording.create.argument.name)
 		.action(async (name: string) => {
 			try {
-				// Check for degit installation
 				await checkDegit();
-
-				// Get project type from user
-				const { projectType } = await inquirer.prompt<PromptResult>([
+				const { TypeOptions } = await inquirer.prompt<PromptResult>([
 					{
 						type: "list",
-						name: "projectType",
+						name: "TypeOptions",
 						message: "Select project boilerplate:",
 						choices: PROJECT_CHOICES,
 					},
 				]);
-
 				console.log(
-					`🚀 Mama help to creating ${projectType} application ${name}...`,
+					`🚀 Mama help to creating ${TypeOptions} application ${name}...`,
 				);
-
-				// Create the project
-				createProject(projectType, name);
-
-				// Change directory
+				createProject(TypeOptions, name);
 				process.chdir(name);
-
-				// Update package.json for Next.js projects
-				if (projectType.includes("next")) {
+				if (TypeOptions.includes("next")) {
 					updatePackageJson(process.cwd(), name);
 				}
-
-				// Get template config
-				const template = TEMPLATES[projectType];
-
+				const template = TEMPLATES[TypeOptions];
 				console.log(`
-✨ ${projectType.toUpperCase()} Application ready!
+✨ ${TypeOptions.toUpperCase()} Application ready!
 
 To get started:
 cd ${name}

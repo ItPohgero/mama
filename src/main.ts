@@ -1,19 +1,19 @@
+import { CommandsBunHono } from "@/commands/bun-hono/command";
 import { Create } from "@/commands/create";
+import { CommandsFlutter } from "@/commands/flutter/command";
+import { CommandsGolang } from "@/commands/golang/command";
 import Init from "@/commands/init";
 import { CommandsNextFullstack } from "@/commands/next-fullstack/command";
 import { CommandsNext } from "@/commands/next/command";
 import { env } from "@/configs/environtment";
+import type { TypeOptions } from "@/configs/type";
 import { useReadConfig } from "@/hooks/use_configfiles";
 import { useConfigValidation } from "@/hooks/use_configvalidation";
-import { useWording } from "@/hooks/use_wording";
+import text from "@/i18n/text";
 import banner from "@/modules/banner";
 import handleError from "@/utils/error";
 import chalk from "chalk";
 import { Command } from "commander";
-import { CommandsBunHono } from "./commands/bun-hono/command";
-import { CommandsFlutter } from "./commands/flutter/command";
-import { CommandsGolang } from "./commands/golang/command";
-import type { TypeOptions } from "./configs/type";
 
 interface ProgramConfig {
 	type: TypeOptions | string | null;
@@ -23,13 +23,11 @@ interface ProgramConfig {
 class CLIProgram {
 	private program: Command;
 	private config: ReturnType<typeof useReadConfig>;
-	private wording: ReturnType<typeof useWording>;
 	private validation: ReturnType<typeof useConfigValidation>;
 
 	constructor() {
 		this.program = new Command();
 		this.config = useReadConfig(env.configFile);
-		this.wording = useWording();
 		this.validation = useConfigValidation(this.config);
 	}
 
@@ -37,16 +35,16 @@ class CLIProgram {
 		this.program
 			.name("mama")
 			.description(chalk.yellow(this.validation.message))
-			.version(env.version, "-v, --version", this.wording.mama.version)
-			.showHelpAfterError(chalk.red(this.wording.mama.showHelpAfterError))
-			.helpOption("-h, --help", this.wording.mama.helpOption);
+			.version(env.version, "-v, --version", text.mama.version)
+			.showHelpAfterError(chalk.red(text.mama.showHelpAfterError))
+			.helpOption("-h, --help", text.mama.helpOption);
 	}
 
 	private setupInitCommand(): void {
 		this.program
 			.command("init")
-			.description(this.wording.init.description)
-			.argument("[type]", this.wording.create.argument.name, "next")
+			.description(text.init.description)
+			.argument("[type]", text.create.argument.name, "next")
 			.action((type: string) => Init(type as TypeOptions));
 	}
 

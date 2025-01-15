@@ -1,10 +1,10 @@
 import { execSync } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
+import text from "@/i18n/text";
 import type { Command } from "commander";
 import inquirer from "inquirer";
 import type { TypeOptions } from "../configs/type";
-import { useWording } from "../hooks/use_wording";
 
 interface TemplateConfig {
 	readonly repo: string;
@@ -117,12 +117,10 @@ const PROJECT_CHOICES: readonly ProjectChoice[] = [
 ] as const;
 
 export const Create = (program: Command): void => {
-	const word = useWording();
-
 	program
 		.command("create")
-		.description(word.create.description)
-		.argument("<name>", word.create.argument.name)
+		.description(text.create.description)
+		.argument("<name>", text.create.argument.name)
 		.action(async (name: string) => {
 			try {
 				await checkDegit();

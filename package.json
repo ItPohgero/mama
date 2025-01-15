@@ -1,6 +1,6 @@
 {
 	"name": "mama-cli",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Mama CLI: A powerful developer toolset for streamlining project initialization and management",
 	"author": {
 		"name": "Wahyu Agus Arifin",
@@ -15,7 +15,7 @@
 	"bin": {
 		"mama": "./bin/index.js"
 	},
-	"files": ["bin", "README.md", "LICENSE"],
+	"files": ["bin", "README.md", "LICENSE", "src/i18n/text.yaml"],
 	"engines": {
 		"node": ">=18.0.0",
 		"bun": ">=1.0.0"

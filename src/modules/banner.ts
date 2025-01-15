@@ -3,7 +3,7 @@
  * @description This file defines the `banner` function, which prints a styled ASCII art banner
  * and a description message to the console. It is part of the Mama CLI package, designed to assist developers
  * like a nurturing guide.
- * 
+ *
  * @author
  * Mataramandev <mataramandev.info@gmail.com>
  * Wahyu A. Arifin <itpohgero@gmail.com>

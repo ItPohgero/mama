@@ -1,6 +1,19 @@
+
+# Mama CLI Configuration File
+# Generated at: 2025-01-15T01:38:46.886Z
+# Author: Mataraman Dev & Wahyu A. Arifin
+# Version: 1.0.1
+
+# Project name
 name: mama
-version: 1.0.1
-author: wahyu agus arifin
+
+# Project type (available options: next, next-fullstack, bun-hono, flutter)
+type: next-fullstack
+
+# Directory configurations
 dir:
-  components: src/mama/components
-  hooks: src/mama/hooks
+    # React/Next.js components directory
+    components: src/components
+    # Custom hooks directory
+    hooks: src/hooks
+    

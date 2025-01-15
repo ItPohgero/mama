@@ -1,5 +1,7 @@
 {
 	"name": "mama-cli",
+	"license": "MIT",
+	"author": "mataramandev | wahyu agus arifin",
 	"version": "1.0.1",
 	"description": "Mama CLI : Make better for development",
 	"main": "bin/index.ts",

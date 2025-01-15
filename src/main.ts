@@ -1,19 +1,19 @@
 /**
  * @file main.ts
- * @description This file contains the `run` function that sets up and executes the main 
- * command-line interface (CLI) functionality for the Mama CLI package. It integrates various 
- * utilities and features, such as displaying a banner, handling configurations, and managing 
+ * @description This file contains the `run` function that sets up and executes the main
+ * command-line interface (CLI) functionality for the Mama CLI package. It integrates various
+ * utilities and features, such as displaying a banner, handling configurations, and managing
  * errors during execution.
- * 
- * The `run` function initializes the Commander.js CLI, sets its commands, description, version, 
+ *
+ * The `run` function initializes the Commander.js CLI, sets its commands, description, version,
  * and options, and then triggers the appropriate actions based on user input.
- * 
+ *
  * @author
  * Mataramandev <mataramandev.info@gmail.com>
  * Wahyu A. Arifin <itpohgero@gmail.com>
- * 
+ *
  * @function run
- * @returns {void} 
+ * @returns {void}
  * @description The main function that sets up and runs the Mama CLI tool.
  */
 
@@ -21,9 +21,10 @@ import fs from "node:fs";
 import path from "node:path";
 import chalk, { type ChalkInstance } from "chalk";
 import { Command } from "commander";
-import pkg from "../package.json" assert { type: "json" };
+import Init from "./app/init";
+import { env } from "./configs/environtment";
 import File from "./configs/files";
-import { createConfig, readConfig, updateConfig } from "./hooks/config.files";
+import { readConfig, updateConfig } from "./hooks/config.files";
 import banner from "./modules/banner";
 import handleError from "./utils/error";
 import { wording } from "./wording/main";
@@ -31,9 +32,9 @@ import { wording } from "./wording/main";
 /**
  * Initializes and runs the Mama CLI program by configuring commands, version, help options,
  * and executing the corresponding actions. This function sets up the CLI interface.
- * 
+ *
  * @function run
- * @returns {void} 
+ * @returns {void}
  */
 export function run(): void {
 	try {
@@ -43,10 +44,13 @@ export function run(): void {
 		program
 			.name("mama")
 			.description(chalk.yellow(`© ${new Date().getFullYear()} mataramandev`))
-			.version(pkg.version, "-v, --version", wording.mama.version)
+			.version(env.version, "-v, --version", wording.mama.version)
 			.showHelpAfterError(chalk.red(wording.mama.showHelpAfterError))
 			.helpOption("-h, --help", wording.mama.helpOption);
-					
+
+		// Set the "init" command
+		program.command("init").description(wording.init.description).action(Init);
+
 		program
 			.command("hello")
 			.description("Display a greeting message") // Command description
@@ -117,22 +121,6 @@ export function run(): void {
 			});
 
 		// "init" command to initialize the project
-		program
-			.command("init")
-			.description("Initialize a new project") // Command description
-			.action((options: { name: string; version: string; author: string }) => {
-				// Define the default configuration
-				const config = {
-					name: "mama",
-					version: pkg.version,
-					author: "wahyu agus arifin",
-					dir: {
-						components: "src/mama/components", // Default components directory
-						hooks: "src/mama/hooks", // Default hooks directory
-					},
-				};
-				createConfig(File.Config, config); // Save the configuration
-			});
 
 		// Parse command-line arguments
 		program.parse(process.argv);

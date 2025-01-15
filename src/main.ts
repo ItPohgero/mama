@@ -28,6 +28,8 @@ import { readConfig, updateConfig } from "./hooks/config.files";
 import banner from "./modules/banner";
 import handleError from "./utils/error";
 import { wording } from "./wording/main";
+import { CheckType } from "./hooks/checkType";
+import { useConfigValidation } from "./hooks/use_configvalidation";
 
 /**
  * Initializes and runs the Mama CLI program by configuring commands, version, help options,
@@ -41,11 +43,10 @@ export function run(): void {
 		const program = new Command();
 		banner();
 		const config = readConfig(File.Config);
-		// Set the program's name, description, version, and options
-		const desc = config?.type ? chalk.yellow(`type : ${config?.type}`) : "Please init first with `mama init`";
+		const { message } = useConfigValidation(config);
 		program
 			.name("mama")
-			.description(chalk.yellow(desc))
+			.description(chalk.yellow(message))
 			.version(env.version, "-v, --version", wording.mama.version)
 			.showHelpAfterError(chalk.red(wording.mama.showHelpAfterError))
 			.helpOption("-h, --help", wording.mama.helpOption);

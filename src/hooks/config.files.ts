@@ -11,6 +11,7 @@
 import fs from "node:fs";
 import chalk from "chalk";
 import yaml from "yaml";
+import type { TypeOptions } from "./checkType";
 
 /**
  * Configuration interface defining the structure of the config file
@@ -19,7 +20,7 @@ import yaml from "yaml";
  * @property {unknown} [key: string] - Additional dynamic properties
  */
 interface Config {
-	type?: string;
+	type?: TypeOptions;
 	dir?: Record<string, string>;
 	[key: string]: unknown;
 }

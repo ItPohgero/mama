@@ -1,9 +1,0 @@
-{
-	"name": "mama",
-	"version": "1.0.0",
-	"author": "wahyu agus arifin",
-	"dir": {
-		"components": "src/mama/components",
-		"hooks": "src/mama/hooks"
-	}
-}

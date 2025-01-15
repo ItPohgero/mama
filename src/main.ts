@@ -1,3 +1,22 @@
+/**
+ * @file main.ts
+ * @description This file contains the `run` function that sets up and executes the main 
+ * command-line interface (CLI) functionality for the Mama CLI package. It integrates various 
+ * utilities and features, such as displaying a banner, handling configurations, and managing 
+ * errors during execution.
+ * 
+ * The `run` function initializes the Commander.js CLI, sets its commands, description, version, 
+ * and options, and then triggers the appropriate actions based on user input.
+ * 
+ * @author
+ * Mataramandev <mataramandev.info@gmail.com>
+ * Wahyu A. Arifin <itpohgero@gmail.com>
+ * 
+ * @function run
+ * @returns {void} 
+ * @description The main function that sets up and runs the Mama CLI tool.
+ */
+
 import fs from "node:fs";
 import path from "node:path";
 import chalk, { type ChalkInstance } from "chalk";
@@ -9,17 +28,25 @@ import banner from "./modules/banner";
 import handleError from "./utils/error";
 import { wording } from "./wording/main";
 
+/**
+ * Initializes and runs the Mama CLI program by configuring commands, version, help options,
+ * and executing the corresponding actions. This function sets up the CLI interface.
+ * 
+ * @function run
+ * @returns {void} 
+ */
 export function run(): void {
 	try {
 		const program = new Command();
 		banner();
+		// Set the program's name, description, version, and options
 		program
 			.name("mama")
 			.description(chalk.yellow(`© ${new Date().getFullYear()} mataramandev`))
 			.version(pkg.version, "-v, --version", wording.mama.version)
 			.showHelpAfterError(chalk.red(wording.mama.showHelpAfterError))
 			.helpOption("-h, --help", wording.mama.helpOption);
-
+					
 		program
 			.command("hello")
 			.description("Display a greeting message") // Command description

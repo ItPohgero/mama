@@ -4,18 +4,10 @@
  */
 
 import chalk from "chalk";
-import type { TypeOptions } from "./checkType";
-
-interface Config {
-	type?: string;
-	[key: string]: unknown;
-}
-
-interface ValidationResult {
-	message: string;
-	isValid: boolean;
-	type: TypeOptions | null;
-}
+import { TypeOptionsData } from "../configs/type";
+import type { ValidationResult } from "../types/configvalidation.type";
+import { useCheckType } from "./use_checktype";
+import type { Config } from "./use_configfiles";
 
 /**
  * Hook to validate configuration type and generate appropriate messages
@@ -25,21 +17,6 @@ interface ValidationResult {
 export const useConfigValidation = (
 	config: Config | null,
 ): ValidationResult => {
-	// Predefined valid types
-	const VALID_TYPES: TypeOptions[] = [
-		"next",
-		"next-fullstack",
-		"bun-hono",
-		"flutter",
-	];
-
-	/**
-	 * Checks if the provided type is a valid TypeOption
-	 */
-	const checkType = (type: string): type is TypeOptions => {
-		return VALID_TYPES.includes(type as TypeOptions);
-	};
-
 	/**
 	 * Generates formatted message based on config state
 	 */
@@ -65,7 +42,7 @@ export const useConfigValidation = (
 		}
 
 		// If type is valid
-		if (checkType(config.type)) {
+		if (useCheckType(config.type)) {
 			return {
 				message: chalk.green(`Type: ${config.type}`),
 				isValid: true,
@@ -76,7 +53,7 @@ export const useConfigValidation = (
 		// If type is invalid
 		return {
 			message: chalk.red(
-				`Invalid type. Please choose: ${VALID_TYPES.join(", ")}`,
+				`Invalid type. Please choose: ${TypeOptionsData.join(", ")}`,
 			),
 			isValid: false,
 			type: null,

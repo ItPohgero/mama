@@ -42,7 +42,7 @@ export function run(): void {
 	try {
 		const program = new Command();
 		banner();
-		const config = useReadConfig(File.Config);
+		const config = useReadConfig(env.configFile);
 		const { message, type, isValid } = useConfigValidation(config);
 		program
 			.name("mama")

@@ -8,7 +8,7 @@
 name: mama
 
 # Project type (available options: next, next-fullstack, bun-hono, flutter)
-type: next-fullstack
+type: next-fullstacks
 
 # Directory configurations
 dir:

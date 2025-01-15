@@ -4,4 +4,5 @@ export const env = {
 	name: pkg.name,
 	author: pkg.author,
 	version: pkg.version,
+	configFile: ".mama.yaml",
 };

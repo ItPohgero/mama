@@ -1,7 +1,6 @@
 import path from "node:path";
 
 const Files = {
-	Config: ".mama.yaml", // Changed from .json to .yaml
 	Target: ({
 		name,
 		finalDir,

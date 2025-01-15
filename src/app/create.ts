@@ -3,7 +3,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import type { Command } from "commander";
 import inquirer from "inquirer";
-import type { TypeOptions } from "../types/main";
+import type { TypeOptions } from "../configs/type";
 import { wording } from "../wording/main";
 
 interface TemplateConfig {

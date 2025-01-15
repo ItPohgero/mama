@@ -3,7 +3,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/dev-mataraman/mataraman.dev/379cbf6117e08bdf8913b5ad041dc70bfdf1dea4/public/logo.svg?token=AQMTIVUJRKENXZDI3TV7VETHQ56HO">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/dev-mataraman/mataraman.dev/379cbf6117e08bdf8913b5ad041dc70bfdf1dea4/public/logo.svg?token=AQMTIVUJRKENXZDI3TV7VETHQ56HO">
-      <img alt="Tailwind CSS" src="https://raw.githubusercontent.com/tailwindlabs/tailwindcss/HEAD/.github/logo-light.svg" width="350" height="70" style="max-width: 100%;">
+      <img alt="Tailwind CSS" src="https://raw.githubusercontent.com/dev-mataraman/mataraman.dev/379cbf6117e08bdf8913b5ad041dc70bfdf1dea4/public/logo.svg?token=AQMTIVUJRKENXZDI3TV7VETHQ56HO" width="350" height="70" style="max-width: 100%;">
     </picture>
   </a>
 </p>

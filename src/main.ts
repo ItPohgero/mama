@@ -46,7 +46,8 @@ class CLIProgram {
 		this.program
 			.command("init")
 			.description(this.wording.init.description)
-			.action(Init);
+			.argument("[type]", this.wording.create.argument.name, "next")
+			.action((type: string) => Init(type as TypeOptions));
 	}
 
 	private setupProjectCommands({ type, isValid }: ProgramConfig): void {

@@ -10,7 +10,7 @@
 	},
 	"type": "module",
 	"scripts": {
-		"build": "bun build bin/index.ts --outdir bin",
+		"build": "bun build bin/index.ts --outdir bin --target bun --minify",
 		"start": "bun bin/index.ts",
 		"biome": "bun run biome:format && bun run biome:check && bun run biome:lint",
 		"biome:format": "bunx biome format --write .",
@@ -21,7 +21,8 @@
 		"@types/figlet": "^1.7.0",
 		"chalk": "^5.4.1",
 		"commander": "^13.0.0",
-		"figlet": "^1.8.0"
+		"figlet": "^1.8.0",
+		"inquirer": "^12.3.2"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",

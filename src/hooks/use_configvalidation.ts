@@ -47,7 +47,9 @@ export const useConfigValidation = (
 		// If no config exists
 		if (!config) {
 			return {
-				message: chalk.yellow("Please init first with `mama init`"),
+				message: chalk.yellow(
+					"Please create new project with `mama create <name>` or init first with `mama init` in your existing project directory",
+				),
 				isValid: false,
 				type: null,
 			};

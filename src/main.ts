@@ -19,12 +19,12 @@
 
 import chalk from "chalk";
 import { Command } from "commander";
+import { Create } from "./app/create";
 import Init from "./app/init";
 import { NextFullstackCommands } from "./app/next-fullstack/commands";
 import { NextCommands } from "./app/next/commands";
 import { env } from "./configs/environtment";
 import File from "./configs/files";
-import { CheckType } from "./hooks/checkType";
 import { readConfig } from "./hooks/config.files";
 import { useConfigValidation } from "./hooks/use_configvalidation";
 import banner from "./modules/banner";
@@ -51,9 +51,7 @@ export function run(): void {
 			.showHelpAfterError(chalk.red(wording.mama.showHelpAfterError))
 			.helpOption("-h, --help", wording.mama.helpOption);
 
-		// Set the "init" command
 		program.command("init").description(wording.init.description).action(Init);
-
 		if (isValid) {
 			switch (type) {
 				case "next":
@@ -65,6 +63,8 @@ export function run(): void {
 				default:
 					break;
 			}
+		} else {
+			Create(program);
 		}
 
 		// "generate" command for generating files

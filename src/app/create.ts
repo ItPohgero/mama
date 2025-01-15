@@ -15,24 +15,29 @@ interface TemplateConfig {
 
 const TEMPLATES: Record<TypeOptions, TemplateConfig> = {
 	next: {
-		repo: "ItPohgero/next-architecture",
+		repo: "dev-mataraman/mama-nextjs",
 		installCommand: "pnpm install",
 		startCommand: "pnpm run dev",
 	},
 	"next-fullstack": {
-		repo: "ItPohgero/next-architecture#fullstack",
-		installCommand: "pnpm install",
-		startCommand: "pnpm run dev",
+		repo: "dev-mataraman/mama-nextjs-fullstack",
+		installCommand: "bun install",
+		startCommand: "bun run dev",
 	},
 	flutter: {
-		repo: "ItPohgero/flutter-template",
+		repo: "dev-mataraman/mama-flutter",
 		installCommand: "flutter pub get",
 		startCommand: "flutter run",
 	},
     "bun-hono": {
-        repo: "ItPohgero/bun-hono-template",
+		repo: "dev-mataraman/mama-bun-hono",
         installCommand: "bun install",
         startCommand: "bun run dev",
+    },
+    "golang": {
+		repo: "dev-mataraman/mama-golang",
+        installCommand: "go mod tidy",
+        startCommand: "go run main.go",
     }
 } as const;
 
@@ -91,11 +96,11 @@ const updatePackageJson = (projectPath: string, newName: string): void => {
 
 const PROJECT_CHOICES: readonly ProjectChoice[] = [
 	{
-		name: "Frontend Next",
+		name: "Frontend NextJs",
 		value: "next",
 	},
 	{
-		name: "Fullstack Next",
+		name: "Fullstack NextJs",
 		value: "next-fullstack",
 	},
 	{
@@ -105,6 +110,10 @@ const PROJECT_CHOICES: readonly ProjectChoice[] = [
 	{
 		name: "Service (Bun + Hono)",
 		value: "bun-hono",
+	},
+	{
+		name: "Service (Golang)",
+		value: "golang",
 	},
 ] as const;
 

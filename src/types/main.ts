@@ -1,3 +1,3 @@
-type TypeOptions = "next" | "next-fullstack" | "bun-hono" | "flutter";
+type TypeOptions = "next" | "next-fullstack" | "bun-hono" | "flutter" | "golang";
 
 export type { TypeOptions };

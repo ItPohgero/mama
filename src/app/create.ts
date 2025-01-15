@@ -3,9 +3,8 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import type { Command } from "commander";
 import inquirer from "inquirer";
-import { wording } from "../wording/main";
 import type { TypeOptions } from "../types/main";
-
+import { wording } from "../wording/main";
 
 interface TemplateConfig {
 	readonly repo: string;
@@ -29,16 +28,16 @@ const TEMPLATES: Record<TypeOptions, TemplateConfig> = {
 		installCommand: "flutter pub get",
 		startCommand: "flutter run",
 	},
-    "bun-hono": {
+	"bun-hono": {
 		repo: "dev-mataraman/mama-bun-hono",
-        installCommand: "bun install",
-        startCommand: "bun run dev",
-    },
-    "golang": {
+		installCommand: "bun install",
+		startCommand: "bun run dev",
+	},
+	golang: {
 		repo: "dev-mataraman/mama-golang",
-        installCommand: "go mod tidy",
-        startCommand: "go run main.go",
-    }
+		installCommand: "go mod tidy",
+		startCommand: "go run main.go",
+	},
 } as const;
 
 // Define project choice interface

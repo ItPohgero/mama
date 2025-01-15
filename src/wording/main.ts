@@ -10,7 +10,7 @@ export const wording = {
 	create: {
 		description: "Create a new application project",
 		argument: {
-			name: "Name of the application"
-		}
-	}
+			name: "Name of the application",
+		},
+	},
 };

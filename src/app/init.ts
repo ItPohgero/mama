@@ -5,7 +5,7 @@
 
 import { env } from "../configs/environtment";
 import File from "../configs/files";
-import { initConfig } from "../hooks/config.files";
+import { useInitConfig } from "../hooks/use_configfiles";
 
 const Init = () => {
 	const yamlContent = `
@@ -28,7 +28,7 @@ dir:
     hooks: src/hooks
 `;
 
-	initConfig(File.Config, yamlContent);
+	useInitConfig(File.Config, yamlContent);
 };
 
 export default Init;

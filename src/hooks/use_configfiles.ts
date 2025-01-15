@@ -34,7 +34,7 @@ interface Config {
  * @returns {void}
  *
  */
-const createConfig = (
+const useCreateConfig = (
 	filePath: string,
 	config: Record<string, unknown>,
 ): void => {
@@ -77,13 +77,13 @@ const createConfig = (
  * @returns {void}
  *
  */
-const updateConfig = (
+const useUpdateConfig = (
 	filePath: string,
 	updater: (config: Record<string, unknown>) => Record<string, unknown>,
 ): void => {
 	try {
 		// Read and update configuration
-		const config = readConfig(filePath) || {};
+		const config = useReadConfig(filePath) || {};
 		const updatedConfig = updater(config);
 
 		// Convert updated config to YAML with proper formatting
@@ -115,7 +115,7 @@ const updateConfig = (
  * @returns {Config | null} The parsed configuration object or null if file doesn't exist
  *
  */
-const readConfig = (filePath: string): Config | null => {
+const useReadConfig = (filePath: string): Config | null => {
 	try {
 		// Check if file exists
 		if (!fs.existsSync(filePath)) {
@@ -135,7 +135,7 @@ const readConfig = (filePath: string): Config | null => {
 	}
 };
 
-const initConfig = (filePath: string, yamlContent: string): void => {
+const useInitConfig = (filePath: string, yamlContent: string): void => {
 	try {
 		if (fs.existsSync(filePath)) {
 			console.log(
@@ -157,5 +157,5 @@ const initConfig = (filePath: string, yamlContent: string): void => {
 	}
 };
 
-export { createConfig, updateConfig, readConfig, initConfig };
+export { useCreateConfig, useUpdateConfig, useReadConfig, useInitConfig };
 export type { Config };

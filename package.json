@@ -12,6 +12,7 @@
 	"scripts": {
 		"build": "bun build bin/index.ts --outdir bin --target bun --minify",
 		"start": "bun bin/index.ts",
+		"up": "bun run .git.ts",
 		"biome": "bun run biome:format && bun run biome:check && bun run biome:lint",
 		"biome:format": "bunx biome format --write .",
 		"biome:check": "bunx biome check  --write .",

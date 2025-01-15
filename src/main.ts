@@ -25,7 +25,7 @@ import { NextFullstackCommands } from "./app/next-fullstack/commands";
 import { NextCommands } from "./app/next/commands";
 import { env } from "./configs/environtment";
 import File from "./configs/files";
-import { readConfig } from "./hooks/config.files";
+import { useReadConfig } from "./hooks/use_configfiles";
 import { useConfigValidation } from "./hooks/use_configvalidation";
 import banner from "./modules/banner";
 import handleError from "./utils/error";
@@ -42,7 +42,7 @@ export function run(): void {
 	try {
 		const program = new Command();
 		banner();
-		const config = readConfig(File.Config);
+		const config = useReadConfig(File.Config);
 		const { message, type, isValid } = useConfigValidation(config);
 		program
 			.name("mama")

@@ -7,9 +7,7 @@
 		"email": "itpohgero@gmail.com",
 		"url": "https://itpohgero.com"
 	},
-	"contributors": [
-		"Mataraman Dev Team <mataramandev.info@gmail.com>"
-	],
+	"contributors": ["Mataraman Dev Team <mataramandev.info@gmail.com>"],
 	"license": "MIT",
 	"type": "module",
 	"main": "./bin/index.js",
@@ -17,11 +15,7 @@
 	"bin": {
 		"mama": "./bin/index.js"
 	},
-	"files": [
-		"bin",
-		"README.md",
-		"LICENSE"
-	],
+	"files": ["bin", "README.md", "LICENSE"],
 	"engines": {
 		"node": ">=18.0.0",
 		"bun": ">=1.0.0"

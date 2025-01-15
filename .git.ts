@@ -18,7 +18,7 @@ const rl = readline.createInterface({
 });
 
 // Run lint, check, and format
-runCommand("bun run biome");
+runCommand("bun run format");
 
 // Stage changes (excluding specific files, like `.env`, if needed)
 runCommand("git add .");

@@ -1,0 +1,20 @@
+
+# Mama CLI Configuration File
+# Generated at: 2025-01-16T13:42:28.878Z
+# Author: Mataraman Dev & Wahyu A. Arifin
+# Version: 1.0.9
+
+# Project name
+name: mama
+
+# Project type (available options: next, next_fullstack, bun_hono, flutter, golang)
+type: next
+
+# Directory configurations
+dir:
+    hook: src/hooks
+    shared: src/shared
+    component: src/interfaces/components
+    screen: src/interfaces/screens
+    layout: src/interfaces/layouts
+    call: src/services/call

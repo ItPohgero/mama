@@ -7,7 +7,8 @@
 
 import React from 'react';
 
-interface <%= name %>Props { }
+type <%= name %>Props = Record<string, never>
+
 
 const <%= name %>Screen: React.FC <<%= name %>Props > = () => {
     return (

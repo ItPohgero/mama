@@ -6,9 +6,9 @@
 
 import React from 'react';
 
-interface <%= name %> Props { }
+interface <%= name %>Props { }
 
-const <%= name %>: React.FC <<%= name %>Props > = () => {
+const <%= name %>Screen: React.FC <<%= name %>Props > = () => {
     return (
         <div>
             <h1>Hello from <%= name %>!</h1>
@@ -16,4 +16,4 @@ const <%= name %>: React.FC <<%= name %>Props > = () => {
     );
 };
 
-export default <%= name %>;
+export default <%= name %>Screen;

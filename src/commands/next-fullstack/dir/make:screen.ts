@@ -51,7 +51,10 @@ export const MakeScreen = async () => {
 
 		const fileType = ".tsx";
 		const targetDir = path.resolve(c.dir.screen);
-		const targetFile = path.join(targetDir, `${processedName}${fileType}`);
+		const targetFile = path.join(
+			targetDir,
+			`${processedName}Screen${fileType}`,
+		);
 		const templateFile = path.join(TEMPLATE_DIR, "screen.ejs.t");
 
 		// Check if template exists

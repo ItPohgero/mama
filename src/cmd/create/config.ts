@@ -4,7 +4,7 @@ import type { ProjectChoice, TemplateConfig } from "@/types/create.types";
 
 export const TEMPLATES: Record<TypeOptions, TemplateConfig> = {
 	next: {
-		path: path.join(__dirname, "../template/next/create"),
+		path: path.join(__dirname, "../../template/next/create"),
 		installCommand: "bun install",
 		startCommand: "bun run dev",
 	},

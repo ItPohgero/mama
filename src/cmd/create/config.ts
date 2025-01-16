@@ -8,11 +8,20 @@ export const TEMPLATES: Record<TypeOptions, TemplateConfig> = {
 		installCommand: "bun install",
 		startCommand: "bun run dev",
 	},
+	angular: {
+		path: path.join(__dirname, "../../template/angular/create"),
+		installCommand: "bun install",
+		startCommand: "bun run dev",
+	},
 } as const;
 
 export const PROJECT_CHOICES: readonly ProjectChoice[] = [
 	{
 		name: "NextJs",
 		value: "next",
+	},
+	{
+		name: "Angular",
+		value: "angular",
 	},
 ] as const;

@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { TEMPLATES } from "@/cmd/create";
 import type { TypeOptions } from "@/configs/types";
-import { copyDir } from "@/hooks/use_copydir";
+import { copyDir } from "@/hooks/use_copy_dir";
 
 export const createProject = (TypeOptions: TypeOptions, name: string): void => {
 	const template = TEMPLATES[TypeOptions];

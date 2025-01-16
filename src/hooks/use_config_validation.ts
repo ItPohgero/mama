@@ -6,8 +6,8 @@
 import { TypeOptionsData } from "@/configs/types";
 import type { ValidationResult } from "@/types/configvalidation.type";
 import chalk from "chalk";
-import { useCheckType } from "./use_checktype";
-import type { Config } from "./use_configfiles";
+import { useCheckType } from "./use_check_type";
+import type { Config } from "./use_config_files";
 
 /**
  * Hook to validate configuration type and generate appropriate messages

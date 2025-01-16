@@ -2,13 +2,14 @@ import banner from "@/modules/banner";
 import handleError from "@/utils/hadle-error";
 import chalk from "chalk";
 import { Command } from "commander";
+import { CommandsAngular } from "./cmd/angular/command";
 import { Create } from "./cmd/create";
 import Init from "./cmd/init";
 import { CommandsNext } from "./cmd/next/command";
 import { env } from "./configs/environtment";
 import type { TypeOptions } from "./configs/types";
-import { useReadConfig } from "./hooks/use_configfiles";
-import { useConfigValidation } from "./hooks/use_configvalidation";
+import { useReadConfig } from "./hooks/use_config_files";
+import { useConfigValidation } from "./hooks/use_config_validation";
 import text from "./lang/text";
 
 interface ProgramConfig {
@@ -54,10 +55,7 @@ class CLIProgram {
 
 		const commandHandlers: Record<TypeOptions, () => void> = {
 			next: () => CommandsNext(this.program),
-			// next_fullstack: () => CommandsNextFullstack(this.program),
-			// bun_hono: () => CommandsBunHono(this.program),
-			// flutter: () => CommandsFlutter(this.program),
-			// golang: () => CommandsGolang(this.program),
+			angular: () => CommandsAngular(this.program),
 		};
 
 		const handler = commandHandlers[type as keyof typeof commandHandlers];

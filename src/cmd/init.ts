@@ -4,10 +4,10 @@
  */
 
 import { type TypeOptions, TypeOptionsData } from "@/configs/types";
-import { useCheckType } from "@/hooks/use_checktype";
+import { useCheckType } from "@/hooks/use_check_type";
 import chalk from "chalk";
 import { env } from "../configs/environtment";
-import { useInitConfig } from "../hooks/use_configfiles";
+import { useInitConfig } from "../hooks/use_config_files";
 
 const Init = (type: TypeOptions) => {
 	if (!useCheckType(type)) {

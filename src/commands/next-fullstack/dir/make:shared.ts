@@ -1,1 +1,3 @@
-export const MakeShared = () => { console.log("make:shared");};
+export const MakeShared = () => {
+	console.log("make:shared");
+};

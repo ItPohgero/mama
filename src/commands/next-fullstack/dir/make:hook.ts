@@ -1,1 +1,3 @@
-export const MakeHook = () => { console.log("make:hook");};
+export const MakeHook = () => {
+	console.log("make:hook");
+};

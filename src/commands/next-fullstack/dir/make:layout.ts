@@ -1,1 +1,3 @@
-export const MakeLayout = () => { console.log("make:layout");};
+export const MakeLayout = () => {
+	console.log("make:layout");
+};

@@ -1,1 +1,3 @@
-export const MakeCall = () => { console.log("make:call");};
+export const MakeCall = () => {
+	console.log("make:call");
+};

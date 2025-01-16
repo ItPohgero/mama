@@ -1,1 +1,3 @@
-export const MakeApi = () => { console.log("make:api");};
+export const MakeApi = () => {
+	console.log("make:api");
+};

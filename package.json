@@ -1,6 +1,6 @@
 {
 	"name": "mama-cli",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "Mama CLI: A powerful developer toolset for streamlining project initialization and management",
 	"author": {
 		"name": "Wahyu Agus Arifin",
@@ -46,6 +46,7 @@
 		"@biomejs/biome": "1.9.4",
 		"@types/bun": "latest",
 		"@types/node": "^20.17.13",
+		"hygen": "^6.2.11",
 		"typescript": "^5.7.3"
 	},
 	"keywords": [

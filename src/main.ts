@@ -41,12 +41,12 @@ class CLIProgram {
 	}
 
 	private setupInitCommand(isMamaExist: boolean): void {
-		if(!isMamaExist){
+		if (!isMamaExist) {
 			this.program
-			.command("init")
-			.description(text.init.description)
-			.argument("[type]", text.create.argument.name, "next")
-			.action((type: string) => Init(type as TypeOptions));
+				.command("init")
+				.description(text.init.description)
+				.argument("[type]", text.create.argument.name, "next")
+				.action((type: string) => Init(type as TypeOptions));
 		}
 	}
 

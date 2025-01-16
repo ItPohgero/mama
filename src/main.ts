@@ -40,12 +40,14 @@ class CLIProgram {
 			.helpOption("-h, --help", text.mama.helpOption);
 	}
 
-	private setupInitCommand(): void {
-		this.program
+	private setupInitCommand(isMamaExist: boolean): void {
+		if(!isMamaExist){
+			this.program
 			.command("init")
 			.description(text.init.description)
 			.argument("[type]", text.create.argument.name, "next")
 			.action((type: string) => Init(type as TypeOptions));
+		}
 	}
 
 	private setupProjectCommands({ type, isValid }: ProgramConfig): void {
@@ -78,7 +80,7 @@ class CLIProgram {
 		try {
 			banner();
 			this.setupBaseProgram();
-			this.setupInitCommand();
+			this.setupInitCommand(this.validation.isValid);
 			this.setupProjectCommands({
 				type: this.validation.type,
 				isValid: this.validation.isValid,

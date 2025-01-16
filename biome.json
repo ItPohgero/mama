@@ -7,7 +7,7 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": ["**/node_modules/**", "**/bin/**"]
+		"ignore": ["**/node_modules/**", "**/bin/**", "**/src/template/**"]
 	},
 	"formatter": {
 		"enabled": true,

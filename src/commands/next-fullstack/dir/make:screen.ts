@@ -2,29 +2,22 @@ import fs from "node:fs";
 import path from "node:path";
 import { env } from "@/configs/environtment";
 import { useReadConfig } from "@/hooks/use_configfiles";
+import { CapitalizeFirstLetter } from "@/utils/capitalize";
 import chalk from "chalk";
 import ejs from "ejs";
 import inquirer from "inquirer";
 
 const TEMPLATE_DIR = path.resolve(__dirname, "./templates/next_fullstack");
-
-// Helper function to capitalize first letter
-const capitalizeFirstLetter = (string: string) => {
-	return string.charAt(0).toUpperCase() + string.slice(1);
-};
-
+const TEMPLATE_FILE = path.join(TEMPLATE_DIR, "screen.ejs.t");
 export const MakeScreen = async () => {
 	try {
 		const c = useReadConfig(env.configFile);
-
-		// Validate config
-		if (!c?.dir?.screen) {
+		const dir = c?.dir?.screen;
+		if (!dir) {
 			throw new Error(
 				"Screen directory not configured. Please check your config file.",
 			);
 		}
-
-		// Get screen name from user
 		const { name } = await inquirer.prompt([
 			{
 				type: "input",
@@ -39,8 +32,7 @@ export const MakeScreen = async () => {
 			},
 		]);
 
-		// Process filename - ensure it starts with capital letter
-		const processedName = capitalizeFirstLetter(
+		const processedName = CapitalizeFirstLetter(
 			name
 				.replace(/[^a-zA-Z\s]/g, "")
 				.replace(/\s+/g, "")
@@ -50,19 +42,16 @@ export const MakeScreen = async () => {
 		);
 
 		const fileType = ".tsx";
-		const targetDir = path.resolve(c.dir.screen);
+		const targetDir = path.resolve(dir);
 		const targetFile = path.join(
 			targetDir,
 			`${processedName}Screen${fileType}`,
 		);
-		const templateFile = path.join(TEMPLATE_DIR, "screen.ejs.t");
 
-		// Check if template exists
-		if (!fs.existsSync(templateFile)) {
-			throw new Error(`Template file tidak ditemukan di: ${templateFile}`);
+		if (!fs.existsSync(TEMPLATE_FILE)) {
+			throw new Error(`Template file tidak ditemukan di: ${TEMPLATE_FILE}`);
 		}
 
-		// Check if target file already exists
 		if (fs.existsSync(targetFile)) {
 			const { overwrite } = await inquirer.prompt([
 				{
@@ -82,14 +71,11 @@ export const MakeScreen = async () => {
 		}
 
 		// Create directory structure
-		console.log(chalk.blue(`Memeriksa direktori: ${targetDir}`));
 		await fs.promises.mkdir(targetDir, { recursive: true });
-
-		// Read and render template
 		console.log(
 			chalk.blue(`Membuat file ${chalk.yellow(processedName + fileType)}...`),
 		);
-		const templateContent = await fs.promises.readFile(templateFile, "utf8");
+		const templateContent = await fs.promises.readFile(TEMPLATE_FILE, "utf8");
 		const renderedContent = ejs.render(templateContent, {
 			name: processedName, // This will now always be capitalized
 			createdAt: new Date().toISOString(),
@@ -98,17 +84,8 @@ export const MakeScreen = async () => {
 
 		// Write file
 		await fs.promises.writeFile(targetFile, renderedContent, "utf8");
-
 		console.log(
 			chalk.green(`✓ File berhasil dibuat di: ${chalk.yellow(targetFile)}`),
-		);
-
-		// Show next steps
-		console.log(chalk.dim.gray("\nLangkah selanjutnya:"));
-		console.log(chalk.dim.gray(`1. Buka file: ${targetFile}`));
-		console.log(chalk.dim.gray("2. Sesuaikan komponen sesuai kebutuhan"));
-		console.log(
-			chalk.dim.gray("3. Import komponen di halaman yang diinginkan\n"),
 		);
 	} catch (error) {
 		if (error instanceof Error) {

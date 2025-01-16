@@ -1,16 +1,16 @@
 import { execSync } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
+import type { TypeOptions } from "@/configs/types";
 import text from "@/lang/text";
+import type {
+	PackageJson,
+	ProjectChoice,
+	PromptResult,
+	TemplateConfig,
+} from "@/types/create.types";
 import type { Command } from "commander";
 import inquirer from "inquirer";
-import type { TypeOptions } from "@/configs/types";
-
-interface TemplateConfig {
-	readonly repo: string;
-	readonly installCommand: string;
-	readonly startCommand: string;
-}
 
 const TEMPLATES: Record<TypeOptions, TemplateConfig> = {
 	next: {
@@ -18,44 +18,7 @@ const TEMPLATES: Record<TypeOptions, TemplateConfig> = {
 		installCommand: "pnpm install",
 		startCommand: "pnpm run dev",
 	},
-	next_fullstack: {
-		repo: "dev-mataraman/mama-nextjs-fullstack",
-		installCommand: "bun install",
-		startCommand: "bun run dev",
-	},
-	flutter: {
-		repo: "dev-mataraman/mama-flutter",
-		installCommand: "flutter pub get",
-		startCommand: "flutter run",
-	},
-	bun_hono: {
-		repo: "dev-mataraman/mama-bun-hono",
-		installCommand: "bun install",
-		startCommand: "bun run dev",
-	},
-	golang: {
-		repo: "dev-mataraman/mama-golang",
-		installCommand: "go mod tidy",
-		startCommand: "go run main.go",
-	},
 } as const;
-
-// Define project choice interface
-interface ProjectChoice {
-	readonly name: string;
-	readonly value: TypeOptions;
-}
-
-// Define prompt result type
-interface PromptResult {
-	readonly TypeOptions: TypeOptions;
-}
-
-// Define package.json interface
-interface PackageJson {
-	name: string;
-	[key: string]: unknown;
-}
 
 // Helper functions with proper error handling
 const checkDegit = async (): Promise<void> => {
@@ -95,25 +58,13 @@ const updatePackageJson = (projectPath: string, newName: string): void => {
 
 const PROJECT_CHOICES: readonly ProjectChoice[] = [
 	{
-		name: "Frontend NextJs",
+		name: "NextJs",
 		value: "next",
 	},
-	{
-		name: "Fullstack NextJs",
-		value: "next_fullstack",
-	},
-	{
-		name: "Mobile Flutter",
-		value: "flutter",
-	},
-	{
-		name: "Service (Bun + Hono)",
-		value: "bun_hono",
-	},
-	{
-		name: "Service (Golang)",
-		value: "golang",
-	},
+	// {
+	// 	name: "Angular",
+	// 	value: "angular",
+	// },
 ] as const;
 
 export const Create = (program: Command): void => {

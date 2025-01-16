@@ -5,6 +5,7 @@ import AppLayout from "@/interfaces/layouts/app.layout";
 import { lilyScriptOne } from "@/styles/fonts/main";
 import NextTopLoader from "nextjs-toploader";
 import { ProviderReduxToolkit } from "@/providers/redux.provider";
+import { ProviderTanstack } from "@/providers/tanstack.provider";
 
 export const metadata: Metadata = {
 	title: "MAMA CLI",
@@ -25,7 +26,9 @@ export default function RootLayout({
 					showSpinner={false}
 				/>
 				<ProviderReduxToolkit>
-					<AppLayout>{children}</AppLayout>
+					<ProviderTanstack>
+						<AppLayout>{children}</AppLayout>
+					</ProviderTanstack>
 				</ProviderReduxToolkit>
 			</body>
 		</html>

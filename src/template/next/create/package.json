@@ -15,6 +15,8 @@
 	"dependencies": {
 		"@iconify/react": "^5.2.0",
 		"@reduxjs/toolkit": "^2.5.0",
+		"@tanstack/react-query": "^5.64.1",
+		"@tanstack/react-query-devtools": "^5.64.1",
 		"next": "15.1.4",
 		"nextjs-toploader": "^3.7.15",
 		"react": "^19.0.0",

@@ -9,56 +9,61 @@ import handleError from "@/utils/hadle-error";
 import chalk from "chalk";
 import ejs from "ejs";
 import inquirer from "inquirer";
+import { COMPONENTS, TEMPLATE_FILE } from "./config.gen:components";
 
-const TEMPLATE_FILE = path.join(
-	__dirname,
-	"../../../template/next/init/gen/components/list.ejs.t",
-);
-
-const COMPONENTS = ["list"];
 export const GenComponents = async (): Promise<void> => {
 	try {
 		// Read configuration
 		const config = useReadConfig(env.configFile);
 		const screenDir = config?.dir?.component;
 
-		const { name } = await inquirer.prompt([
-			{
-				type: "list",
-				name: "name",
-				message: "Select component :",
-				choices: COMPONENTS,
-			},
-		]);
-
 		if (!screenDir) {
 			throw new Error(
 				"Screen directory not configured. Please check your config file.",
 			);
 		}
+
+		const { name } = await inquirer.prompt([
+			{
+				type: "list",
+				name: "name",
+				message: "Select component:",
+				choices: COMPONENTS,
+			},
+		]);
+
+		const templateEntry = TEMPLATE_FILE.find((item) => item.key === name);
+		if (!templateEntry) {
+			throw new Error(`Template for component "${name}" not found.`);
+		}
+
+		if (!fs.existsSync(templateEntry.value)) {
+			throw new Error(`Template file not found at: ${templateEntry.value}`);
+		}
+
 		const processedName = ProcessName(name);
 		const fileType = ".tsx";
 		const targetDir = path.resolve(screenDir);
 		const targetFile = path.join(targetDir, `${processedName}${fileType}`);
-
-		// Verify template exists
-		if (!fs.existsSync(TEMPLATE_FILE)) {
-			throw new Error(`Template file not found at: ${TEMPLATE_FILE}`);
-		}
 
 		// Check for existing file and handle overwrite
 		const shouldProceed = await useHandleFileExists(targetFile);
 		if (!shouldProceed) {
 			return;
 		}
+
 		// Create directory structure if it doesn't exist
 		await fs.promises.mkdir(targetDir, { recursive: true });
 
 		console.log(
 			chalk.blue(`Creating file ${chalk.yellow(processedName + fileType)}...`),
 		);
+
 		// Read and render template
-		const templateContent = await fs.promises.readFile(TEMPLATE_FILE, "utf8");
+		const templateContent = await fs.promises.readFile(
+			templateEntry.value,
+			"utf8",
+		);
 		const renderedContent = ejs.render(templateContent, {
 			name: processedName,
 			createdAt: new Date().toISOString(),

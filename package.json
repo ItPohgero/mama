@@ -36,12 +36,15 @@
 		"release": "bun run build && npm publish"
 	},
 	"dependencies": {
+		"@types/ejs": "^3.1.5",
 		"@types/figlet": "^1.7.0",
+		"@types/react": "^19.0.7",
 		"chalk": "^5.4.1",
 		"commander": "^13.0.0",
+		"ejs": "^3.1.10",
 		"figlet": "^1.8.0",
-		"hygen": "^6.2.11",
-		"inquirer": "^12.3.2"
+		"inquirer": "^12.3.2",
+		"react": "^19.0.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",

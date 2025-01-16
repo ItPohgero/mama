@@ -1,0 +1,16 @@
+apps:
+  - name: mama-cli-next # Unique name for the application, useful for identifying it in PM2
+    script: bun # Command to run the application, using 'bun' instead of npm/node
+    args: start # Arguments passed to 'bun', in this case running the 'start' command
+    cwd: ./ # Working directory of the application, typically the root of the project
+    instances: 1 # Number of instances to run; use 1 for single-thread mode
+    exec_mode: fork # Execution mode; use 'fork' for single-thread or 'cluster' for multi-thread
+    autorestart: true # PM2 will automatically restart the application if it crashes
+    watch: false # Disable file watching in production mode to save resources
+    max_memory_restart: 300M # PM2 will automatically restart the app if it exceeds 300MB of RAM
+    env: # Environment variables for production mode
+      NODE_ENV: production # Set NODE_ENV to 'production' for optimized performance
+      PORT: 8084 # Port where the application will run in production mode
+    env_development: # Environment variables for development mode
+      NODE_ENV: development # Set NODE_ENV to 'development' for debugging purposes
+      PORT: 8085 # Port where the application will run in development mode

@@ -10,7 +10,7 @@ export const Create = (program: Command): void => {
 	program
 		.command("create")
 		.description(text.create.description)
-		.argument("<name>", text.create.argument.name)
+		.argument("[name]", text.create.argument.name, "my-app")
 		.action(async (name: string) => {
 			try {
 				const { TypeOptions } = await inquirer.prompt<PromptResult>([
@@ -39,7 +39,8 @@ ${template.installCommand}
 ${template.startCommand}
 
 Happy coding guys! 🎉
-by: @mataramandev
+author: @wahyuagusarifin
+sponsored: @mataramandev
         `);
 			} catch (error) {
 				if (error instanceof Error) {

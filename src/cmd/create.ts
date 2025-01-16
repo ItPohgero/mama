@@ -1,4 +1,3 @@
-import { execSync } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import type { TypeOptions } from "@/configs/types";
@@ -14,27 +13,49 @@ import inquirer from "inquirer";
 
 const TEMPLATES: Record<TypeOptions, TemplateConfig> = {
 	next: {
-		repo: "dev-mataraman/mama-nextjs",
-		installCommand: "pnpm install",
-		startCommand: "pnpm run dev",
+		path: path.join(__dirname, "../template/next/create"),
+		installCommand: "bun install",
+		startCommand: "bun run dev",
 	},
 } as const;
 
-// Helper functions with proper error handling
-const checkDegit = async (): Promise<void> => {
-	try {
-		execSync("degit -v", { stdio: "ignore" });
-	} catch {
-		console.log("📦 Installing degit...");
-		execSync("npm install -g degit", { stdio: "inherit" });
+// Helper function to copy directory recursively
+const copyDir = (src: string, dest: string): void => {
+	// Create destination directory if it doesn't exist
+	if (!fs.existsSync(dest)) {
+		fs.mkdirSync(dest, { recursive: true });
+	}
+
+	// Read source directory
+	const entries = fs.readdirSync(src, { withFileTypes: true });
+
+	for (const entry of entries) {
+		const srcPath = path.join(src, entry.name);
+		const destPath = path.join(dest, entry.name);
+
+		if (entry.isDirectory()) {
+			copyDir(srcPath, destPath);
+		} else {
+			fs.copyFileSync(srcPath, destPath);
+		}
 	}
 };
 
 const createProject = (TypeOptions: TypeOptions, name: string): void => {
 	const template = TEMPLATES[TypeOptions];
-	execSync(`degit ${template.repo} ${name}`, {
-		stdio: "inherit",
-	});
+	const projectPath = path.join(process.cwd(), name);
+
+	if (!fs.existsSync(template.path)) {
+		throw new Error(`Template directory not found: ${template.path}`);
+	}
+
+	// Create project directory
+	if (!fs.existsSync(projectPath)) {
+		fs.mkdirSync(projectPath, { recursive: true });
+	}
+
+	// Copy template files
+	copyDir(template.path, projectPath);
 };
 
 const updatePackageJson = (projectPath: string, newName: string): void => {
@@ -61,10 +82,6 @@ const PROJECT_CHOICES: readonly ProjectChoice[] = [
 		name: "NextJs",
 		value: "next",
 	},
-	// {
-	// 	name: "Angular",
-	// 	value: "angular",
-	// },
 ] as const;
 
 export const Create = (program: Command): void => {
@@ -74,7 +91,6 @@ export const Create = (program: Command): void => {
 		.argument("<name>", text.create.argument.name)
 		.action(async (name: string) => {
 			try {
-				await checkDegit();
 				const { TypeOptions } = await inquirer.prompt<PromptResult>([
 					{
 						type: "list",

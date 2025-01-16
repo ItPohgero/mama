@@ -1,7 +1,7 @@
 import type { TypeOptions } from "@/configs/types";
 
 export interface TemplateConfig {
-	readonly repo: string;
+	readonly path: string;
 	readonly installCommand: string;
 	readonly startCommand: string;
 }

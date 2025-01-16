@@ -8,31 +8,38 @@ import { ProcessName } from "@/utils/capitalize";
 import handleError from "@/utils/hadle-error";
 import chalk from "chalk";
 import ejs from "ejs";
+import inquirer from "inquirer";
 
 const TEMPLATE_FILE = path.join(
 	__dirname,
 	"../../../template/next/init/gen/components/list.ejs.t",
 );
 
-const NAME = "list";
+const COMPONENTS = ["list"];
 export const GenComponents = async (): Promise<void> => {
 	try {
 		// Read configuration
 		const config = useReadConfig(env.configFile);
 		const screenDir = config?.dir?.component;
 
+		const { name } = await inquirer.prompt([
+			{
+				type: "list",
+				name: "name",
+				message: "Select component :",
+				choices: COMPONENTS,
+			},
+		]);
+
 		if (!screenDir) {
 			throw new Error(
 				"Screen directory not configured. Please check your config file.",
 			);
 		}
-		const processedName = ProcessName(NAME);
+		const processedName = ProcessName(name);
 		const fileType = ".tsx";
 		const targetDir = path.resolve(screenDir);
-		const targetFile = path.join(
-			targetDir,
-			`${processedName}Components${fileType}`,
-		);
+		const targetFile = path.join(targetDir, `${processedName}${fileType}`);
 
 		// Verify template exists
 		if (!fs.existsSync(TEMPLATE_FILE)) {

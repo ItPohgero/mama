@@ -17,5 +17,7 @@ export const createProject = (TypeOptions: TypeOptions, name: string): void => {
 		fs.mkdirSync(projectPath, { recursive: true });
 	}
 	// Copy template files
-	copyDir(template.path, projectPath);
+	copyDir(template.path, projectPath, (progress) => {
+		process.stdout.write(`\rProgress: ${Math.round(progress)}%`);
+	});
 };

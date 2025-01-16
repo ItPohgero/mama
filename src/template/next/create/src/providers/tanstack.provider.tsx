@@ -6,7 +6,7 @@ const queryClient = new QueryClient();
 export function ProviderTanstack({ children }: { children: React.ReactNode }) {
 	return (
 		<QueryClientProvider client={queryClient}>
-			{children}
+			<main>{children}</main>
 			<ReactQueryDevtools initialIsOpen={false} />
 		</QueryClientProvider>
 	);

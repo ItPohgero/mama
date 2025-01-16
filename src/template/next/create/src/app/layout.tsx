@@ -4,6 +4,7 @@ import { ENV } from "@/configs/environment";
 import AppLayout from "@/interfaces/layouts/app.layout";
 import { lilyScriptOne } from "@/styles/fonts/main";
 import NextTopLoader from "nextjs-toploader";
+import { ProviderReduxToolkit } from "@/providers/redux.provider";
 
 export const metadata: Metadata = {
 	title: "MAMA CLI",
@@ -23,7 +24,9 @@ export default function RootLayout({
 					color={ENV.LOADER_COLOR}
 					showSpinner={false}
 				/>
-				<AppLayout>{children}</AppLayout>
+				<ProviderReduxToolkit>
+					<AppLayout>{children}</AppLayout>
+				</ProviderReduxToolkit>
 			</body>
 		</html>
 	);

@@ -9,7 +9,7 @@
  */
 
 import fs from "node:fs";
-import type { TypeOptions } from "@/configs/types";
+import type { TypeOptions } from "@/configs/type";
 import chalk from "chalk";
 import yaml from "yaml";
 

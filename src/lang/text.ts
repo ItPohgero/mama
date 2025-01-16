@@ -14,6 +14,9 @@ const text = {
 			name: "Name of the application",
 		},
 	},
+	gen: {
+		components_desc: "Generate components for your application",
+	},
 	make: {
 		screen_desc: "Manage and design main application views",
 		layout_desc: "Define consistent app interface structure",

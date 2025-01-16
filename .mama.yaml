@@ -7,8 +7,8 @@
 # Project name
 name: mama
 
-# Project type (available options: next, next_fullstack, bun_hono, flutter, golang)
-type: next_fullstack
+# Project type (available options: next, angular)
+type: next
 
 # Directory configurations
 dir:

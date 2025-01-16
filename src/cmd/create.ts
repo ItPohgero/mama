@@ -51,3 +51,4 @@ by: @mataramandev
 			}
 		});
 };
+export { TEMPLATES };

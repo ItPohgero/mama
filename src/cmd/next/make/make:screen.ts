@@ -38,11 +38,14 @@ export const MakeScreen = async (): Promise<void> => {
 
 		const processedName = ProcessName(name);
 		const fileType = ".tsx";
-		const targetDir = path.resolve(screenDir);
-		const targetFile = path.join(
-			targetDir,
-			`screen_${processedName?.toLocaleLowerCase()}/main.${fileType}`,
+		const targetDir = path.resolve(
+			screenDir,
+			`screen_${processedName?.toLocaleLowerCase()}`,
 		);
+		const targetFile = path.join(targetDir, `main${fileType}`);
+
+		// saya ingin membuat file menjadi
+		// screen_{xxx}/main.tsx
 
 		// Verify template exists
 		if (!fs.existsSync(TEMPLATE_FILE)) {

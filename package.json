@@ -32,7 +32,7 @@
 		"biome:format": "bunx biome format --write .",
 		"biome:check": "bunx biome check --write .",
 		"biome:lint": "bunx biome lint --write .",
-		"up": "bun run .git.ts",
+		"up": "bun run .up.mts",
 		"release": "bun run build && npm publish"
 	},
 	"dependencies": {

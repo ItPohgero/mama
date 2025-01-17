@@ -135,5 +135,5 @@ This project is licensed under the [MIT License](https://github.com/ItPohgero/ma
 ---
 
 <p align="center">
-  Made with ❤️ by <a href="https://mataraman.dev" target="_blank">Mataraman Dev</a>
+  Made with ❤️ by <a href="https://mataraman.dev" target="_blank">Mataraman Dev</a> and <a href="https://itpohgero.com" target="_blank">ItPohgero</a>
 </p>

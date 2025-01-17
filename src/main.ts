@@ -7,7 +7,7 @@ import { Create } from "./cmd/create";
 import Init from "./cmd/init";
 import { CommandsNext } from "./cmd/next/command";
 import { env } from "./configs/environtment";
-import type { TypeOptions } from "./configs/types";
+import { type TypeOptions, TypeOptionsData } from "./configs/types";
 import { useReadConfig } from "./hooks/use_config_files";
 import { useConfigValidation } from "./hooks/use_config_validation";
 import text from "./lang/text";
@@ -43,6 +43,10 @@ class CLIProgram {
 				.command("init")
 				.description(text.init.description)
 				.argument("[type]", text.create.argument.name, "next")
+				.addHelpText(
+					"before",
+					chalk.yellow(`\nPlease choose type: ${TypeOptionsData.join(", ")} `),
+				)
 				.action((type: string) => Init(type as TypeOptions));
 		}
 	}

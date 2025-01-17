@@ -1,8 +1,7 @@
-import { Lily_Script_One } from "next/font/google";
+import { Inter  } from "next/font/google";
 
-const lilyScriptOne = Lily_Script_One({
+const lilyScriptOne = Inter({
 	subsets: ["latin"],
-	variable: "--font-lily-script-one",
 	weight: "400",
 });
 

@@ -41,7 +41,7 @@ export const MakeScreen = async (): Promise<void> => {
 		const targetDir = path.resolve(screenDir);
 		const targetFile = path.join(
 			targetDir,
-			`${processedName}Screen${fileType}`,
+			`screen_${processedName?.toLocaleLowerCase()}/main.${fileType}`,
 		);
 
 		// Verify template exists

@@ -32,7 +32,7 @@ export const List = <TypeData,>({
     return (
         <>
             {Array.from({ length: skeletonCount }).map((_, index) => (
-                <div key={index}>{renderSkeleton ? renderSkeleton(index) : <div className="skeleton">Loading...</div>}</div>
+                <div key={index?.toString()}>{renderSkeleton ? renderSkeleton(index) : <div className="skeleton">Loading...</div>}</div>
             ))}
         </>
         );
@@ -47,7 +47,7 @@ export const List = <TypeData,>({
     return (
         <>
             {validData.map((item, index) => (
-                <React.Fragment key={index}>{renderItem(item, index)}</React.Fragment>
+                <React.Fragment key={index?.toString()}>{renderItem(item, index)}</React.Fragment>
             ))}
         </>
     );

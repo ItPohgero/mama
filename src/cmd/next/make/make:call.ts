@@ -32,9 +32,9 @@ export const MakeCall = async () => {
 		configDirKey: "call",
 		templatePath: TypeOptions,
 		fileStructure: {
-			directoryPattern: "call_{name}",
-			filePattern: "main",
-			extension: ".tsx",
+			directoryPattern: undefined,
+			filePattern: "call_{name}",
+			extension: ".ts",
 		},
 		promptMessage: "Enter api name (e.g.,login, profile):",
 	});

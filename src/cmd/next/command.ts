@@ -14,7 +14,7 @@ const groupedCommands: GroupedCommands[] = [
 				arguments: [
 					{
 						key: "name",
-						required: true,
+						required: false,
 						default: null,
 						description: "Name of the screen",
 					},

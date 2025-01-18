@@ -3,16 +3,16 @@ import { useMake } from "@/hooks/use_make";
 
 const TEMPLATE = path.join(
 	__dirname,
-	"../../../template/next/init/make/screen.ejs.t",
+	"../../../template/next/init/make/layout.ejs.t",
 );
 
-export const MakeScreen = useMake({
-	configDirKey: "screen",
+export const MakeLayout = useMake({
+	configDirKey: "layout",
 	templatePath: TEMPLATE,
 	fileStructure: {
-		directoryPattern: "screen_{name}",
+		directoryPattern: "layout_{name}",
 		filePattern: "main",
 		extension: ".tsx",
 	},
-	promptMessage: "Enter screen name (e.g., login, profile):",
+	promptMessage: "Enter layout name (e.g., login, profile):",
 });

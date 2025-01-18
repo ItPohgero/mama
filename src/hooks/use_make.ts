@@ -11,31 +11,22 @@ import ejs from "ejs";
 import inquirer from "inquirer";
 
 interface FileStructure {
-	// If null/undefined, file will be created directly in target directory without a subdirectory
 	directoryPattern?: string;
-	// The pattern for the file name
 	filePattern: string;
-	// File extension (e.g., '.tsx', '.ts')
 	extension: string;
 }
 
 interface MakerConfig {
-	// The key to look up in config.dir (e.g., 'screen', 'api', 'hooks')
-	configDirKey: "screen" | "api" | "hook";
-	// Path to the template file
+	configDirKey: "screen" | "api" | "hook" | "layout";
 	templatePath: string;
-	// File structure configuration
 	fileStructure: FileStructure;
-	// Custom prompt message
 	promptMessage?: string;
-	// Optional additional template data
 	getTemplateData?: (name: string) => Record<string, unknown>;
 }
 
 export const useMake = (config: MakerConfig) => {
 	return async (name?: string): Promise<void> => {
 		try {
-			// Read configuration
 			const appConfig = useReadConfig(env.configFile);
 			const baseDir = appConfig?.dir?.[config.configDirKey];
 

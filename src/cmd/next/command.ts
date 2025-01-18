@@ -3,6 +3,7 @@ import text from "@/lang/text";
 import type { GroupedCommands } from "@/types/command.type";
 import type { Command } from "commander";
 import { GenComponents } from "./gen/gen:components";
+import { MakeCall } from "./make/make:call";
 import { MakeHooks } from "./make/make:hooks";
 import { MakeLayout } from "./make/make:layout";
 import { MakeScreen } from "./make/make:screen";
@@ -42,7 +43,7 @@ const groupedCommands: GroupedCommands[] = [
 			{
 				cmd: "make:call",
 				desc: text.make.call_desc,
-				action: async () => {},
+				action: MakeCall,
 			},
 			{
 				cmd: "make:shared",

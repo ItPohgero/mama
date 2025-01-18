@@ -6,7 +6,7 @@
 
 import { type FC, Fragment, type PropsWithChildren } from "react";
 
-const <%= name %>Layout: FC<PropsWithChildren> = () => {
+const <%= name %>Layout: FC<PropsWithChildren> = ({children}) => {
     return (
 		<Fragment>
 			<main>{children}</main>

@@ -8,7 +8,7 @@ const HOOKS_TEMPLATE = path.join(
 );
 
 export const MakeHooks = useMake({
-	configDirKey: "hooks",
+	configDirKey: "hook",
 	templatePath: HOOKS_TEMPLATE,
 	filePrefix: "use_",
 	fileExtension: ".ts",

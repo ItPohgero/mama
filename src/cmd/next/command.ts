@@ -3,6 +3,7 @@ import text from "@/lang/text";
 import type { GroupedCommands } from "@/types/command.type";
 import type { Command } from "commander";
 import { GenComponents } from "./gen/gen:components";
+import { MakeHooks } from "./make/make:hooks";
 import { MakeScreen } from "./make/make:screen";
 
 const groupedCommands: GroupedCommands[] = [
@@ -25,7 +26,7 @@ const groupedCommands: GroupedCommands[] = [
 			{
 				cmd: "make:hooks",
 				desc: text.make.hook_desc,
-				action: async () => {},
+				action: MakeHooks,
 			},
 			{
 				cmd: "make:layout",

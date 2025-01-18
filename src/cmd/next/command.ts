@@ -57,6 +57,11 @@ const groupedCommands: GroupedCommands[] = [
 				desc: text.gen.components_desc,
 				action: GenComponents,
 			},
+			{
+				cmd: "gen:hooks",
+				desc: text.gen.hooks_desc,
+				action: async () => {},
+			},
 		],
 	},
 ];

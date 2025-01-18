@@ -16,6 +16,7 @@ const text = {
 	},
 	gen: {
 		components_desc: "Generate components for your application",
+		hooks_desc: "Generate hooks for your application",
 	},
 	make: {
 		screen_desc: "Manage and design main application views",

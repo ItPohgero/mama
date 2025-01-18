@@ -16,5 +16,6 @@ dir:
     component: src/interfaces/components
     screen: src/interfaces/screens
     layout: src/interfaces/layouts
-    call: src/services/call
+    call: src/services
     api: src/api
+    controller: src/server/controllers

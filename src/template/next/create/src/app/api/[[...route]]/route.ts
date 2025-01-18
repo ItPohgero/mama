@@ -1,13 +1,12 @@
-import HealthController from "@/server/clients/health.controller";
-import { Hono } from "hono";
 import { handle } from "hono/vercel";
+import { RouteBuilder } from "@/server/utils/route-builder";
+import { appRoutes } from "@/server/registry/routes";
 
-const main = new Hono().get("/health", HealthController);
-
-const app = new Hono()
-	.basePath("/api")
-	.route("/main", main)
+const routeBuilder = new RouteBuilder("/api");
+const app = routeBuilder.buildRoutes(appRoutes);
 
 export const GET = handle(app);
 export const POST = handle(app);
-export type AppType = typeof app;
+export const PUT = handle(app);
+export const DELETE = handle(app);
+export const PATCH = handle(app);

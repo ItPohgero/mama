@@ -16,7 +16,7 @@ const TEMPLATE_FILE = path.join(
 	"../../../template/next/init/make/screen.ejs.t",
 );
 
-export const MakeScreen = async (): Promise<void> => {
+export const MakeScreen = async (name?: string): Promise<void> => {
 	try {
 		// Read configuration
 		const config = useReadConfig(env.configFile);
@@ -27,16 +27,23 @@ export const MakeScreen = async (): Promise<void> => {
 				"Screen directory not configured. Please check your config file.",
 			);
 		}
-		const { name } = await inquirer.prompt([
-			{
-				type: "input",
-				name: "name",
-				message: chalk.dim.gray("Enter screen name (e.g., Login, Profile):"),
-				validate: validCannotBeEmpty,
-			},
-		]);
 
-		const processedName = ProcessName(name);
+		let screenName: string;
+		if (name) {
+			screenName = name;
+		} else {
+			const answer = await inquirer.prompt([
+				{
+					type: "input",
+					name: "name",
+					message: chalk.dim.gray("Enter screen name (e.g., login, profile):"),
+					validate: validCannotBeEmpty,
+				},
+			]);
+			screenName = answer.name;
+		}
+
+		const processedName = ProcessName(screenName);
 		const fileType = ".tsx";
 		const targetDir = path.resolve(
 			screenDir,

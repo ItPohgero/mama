@@ -6,9 +6,9 @@ export type GroupedCommands = {
 		arguments?: {
 			key: string;
 			required: boolean;
-			default: string;
+			default: string | null;
 			description: string;
 		}[];
-		action: () => Promise<void>;
+		action: (...args: string[]) => Promise<void>;
 	}[];
 };

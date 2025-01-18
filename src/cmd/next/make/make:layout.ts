@@ -14,5 +14,5 @@ export const MakeLayout = useMake({
 		filePattern: "main",
 		extension: ".tsx",
 	},
-	promptMessage: "Enter layout name (e.g., login, profile):",
+	promptMessage: "Enter layout name (e.g., guard, guest):",
 });

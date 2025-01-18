@@ -10,12 +10,26 @@ import chalk from "chalk";
 import ejs from "ejs";
 import inquirer from "inquirer";
 
+interface FileStructure {
+	// If null/undefined, file will be created directly in target directory without a subdirectory
+	directoryPattern?: string;
+	// The pattern for the file name
+	filePattern: string;
+	// File extension (e.g., '.tsx', '.ts')
+	extension: string;
+}
+
 interface MakerConfig {
-	configDirKey: string; // The key to look up in config.dir (e.g., 'screen', 'api', 'hooks')
-	templatePath: string; // Path to the template file
-	filePrefix: string; // Prefix for the directory (e.g., 'screen_', 'api_')
-	fileExtension: string; // File extension (e.g., '.tsx', '.ts')
-	promptMessage?: string; // Custom prompt message
+	// The key to look up in config.dir (e.g., 'screen', 'api', 'hooks')
+	configDirKey: "screen" | "api" | "hook";
+	// Path to the template file
+	templatePath: string;
+	// File structure configuration
+	fileStructure: FileStructure;
+	// Custom prompt message
+	promptMessage?: string;
+	// Optional additional template data
+	getTemplateData?: (name: string) => Record<string, unknown>;
 }
 
 export const useMake = (config: MakerConfig) => {
@@ -23,9 +37,9 @@ export const useMake = (config: MakerConfig) => {
 		try {
 			// Read configuration
 			const appConfig = useReadConfig(env.configFile);
-			const targetDir = appConfig?.dir?.[config.configDirKey];
+			const baseDir = appConfig?.dir?.[config.configDirKey];
 
-			if (!targetDir) {
+			if (!baseDir) {
 				throw new Error(
 					`${config.configDirKey} directory not configured. Please check your config file.`,
 				);
@@ -50,14 +64,27 @@ export const useMake = (config: MakerConfig) => {
 			}
 
 			const processedName = ProcessName(itemName);
-			const targetDirectory = path.resolve(
-				targetDir,
-				`${config.filePrefix}${processedName?.toLowerCase()}`,
-			);
-			const targetFile = path.join(
-				targetDirectory,
-				`main${config.fileExtension}`,
-			);
+			const lowerProcessedName = processedName.toLowerCase();
+
+			// Generate file paths based on patterns
+			const { directoryPattern, filePattern, extension } = config.fileStructure;
+
+			// Replace placeholders in patterns
+			const resolvePattern = (pattern: string) => {
+				return pattern
+					.replace(/{name}/g, lowerProcessedName)
+					.replace(/{Name}/g, processedName);
+			};
+
+			// Determine target directory and file paths
+			let targetDirectory = baseDir;
+			if (directoryPattern) {
+				const dirName = resolvePattern(directoryPattern);
+				targetDirectory = path.resolve(baseDir, dirName);
+			}
+
+			const fileName = resolvePattern(filePattern) + extension;
+			const targetFile = path.join(targetDirectory, fileName);
 
 			// Verify template exists
 			if (!fs.existsSync(config.templatePath)) {
@@ -75,9 +102,7 @@ export const useMake = (config: MakerConfig) => {
 
 			console.log(
 				chalk.blue(
-					`Creating ${config.configDirKey} file ${chalk.yellow(
-						processedName + config.fileExtension,
-					)}...`,
+					`Creating ${config.configDirKey} file ${chalk.yellow(fileName)}...`,
 				),
 			);
 
@@ -86,11 +111,18 @@ export const useMake = (config: MakerConfig) => {
 				config.templatePath,
 				"utf8",
 			);
-			const renderedContent = ejs.render(templateContent, {
+
+			// Combine default template data with custom data if provided
+			const templateData = {
 				name: processedName,
 				createdAt: new Date().toISOString(),
 				author: env.name || "unknown",
-			});
+				...(config.getTemplateData
+					? config.getTemplateData(processedName)
+					: {}),
+			};
+
+			const renderedContent = ejs.render(templateContent, templateData);
 
 			// Write file
 			await fs.promises.writeFile(targetFile, renderedContent, "utf8");

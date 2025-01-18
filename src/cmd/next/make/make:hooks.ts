@@ -10,7 +10,10 @@ const HOOKS_TEMPLATE = path.join(
 export const MakeHooks = useMake({
 	configDirKey: "hook",
 	templatePath: HOOKS_TEMPLATE,
-	filePrefix: "use_",
-	fileExtension: ".ts",
+	fileStructure: {
+		directoryPattern: undefined,
+		filePattern: "use_{name}",
+		extension: ".ts",
+	},
 	promptMessage: "Enter hook name (e.g., auth, theme):",
 });

@@ -24,8 +24,28 @@ const groupedCommands: GroupedCommands[] = [
 			},
 			{
 				cmd: "make:hooks",
-				desc: text.make.screen_desc,
-				action: MakeScreen,
+				desc: text.make.hook_desc,
+				action: async () => {},
+			},
+			{
+				cmd: "make:layout",
+				desc: text.make.layout_desc,
+				action: async () => {},
+			},
+			{
+				cmd: "make:api",
+				desc: text.make.api_desc,
+				action: async () => {},
+			},
+			{
+				cmd: "make:call",
+				desc: text.make.call_desc,
+				action: async () => {},
+			},
+			{
+				cmd: "make:shared",
+				desc: text.make.shared_desc,
+				action: async () => {},
 			},
 		],
 	},

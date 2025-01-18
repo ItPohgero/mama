@@ -28,8 +28,8 @@ export const MakeCall = async () => {
 			message: "Enter the endpoint path:",
 		},
 	]);
-	useMake({
-		configDirKey: "screen",
+	const run = useMake({
+		configDirKey: "call",
 		templatePath: TypeOptions,
 		fileStructure: {
 			directoryPattern: "call_{name}",
@@ -38,4 +38,6 @@ export const MakeCall = async () => {
 		},
 		promptMessage: "Enter api name (e.g.,login, profile):",
 	});
+
+	await run();
 };

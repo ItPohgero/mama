@@ -17,7 +17,7 @@ export const Create = (program: Command): void => {
 					{
 						type: "list",
 						name: "TypeOptions",
-						message: "Select project boilerplate:",
+						message: " Would you like to install a starter kit?",
 						choices: PROJECT_CHOICES,
 					},
 				]);

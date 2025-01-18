@@ -11,6 +11,7 @@ import { type TypeOptions, TypeOptionsData } from "./configs/types";
 import { useReadConfig } from "./hooks/use_config_files";
 import { useConfigValidation } from "./hooks/use_config_validation";
 import text from "./lang/text";
+import bannerinit from "./modules/banner_init";
 
 interface ProgramConfig {
 	type: TypeOptions | string | null;
@@ -76,7 +77,11 @@ class CLIProgram {
 
 	public run(): void {
 		try {
-			banner();
+			if (!this.validation.isValid) {
+				banner();
+			} else {
+				bannerinit();
+			}
 			this.setupBaseProgram();
 			this.setupInitCommand(this.validation.isValid);
 			this.setupProjectCommands({

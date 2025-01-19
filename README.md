@@ -1,9 +1,9 @@
 <p align="center">
-  <a href="https://mama.mataraman.dev" target="_blank">
+  <a href="https://tailwindcss.com" target="_blank">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ItPohgero/mama-cli/refs/heads/main/src/assets/logo.png">
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/dev-mataraman/mataraman.dev/379cbf6117e08bdf8913b5ad041dc70bfdf1dea4/public/logo.svg?token=AQMTIVUJRKENXZDI3TV7VETHQ56HO">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/dev-mataraman/mataraman.dev/379cbf6117e08bdf8913b5ad041dc70bfdf1dea4/public/logo.svg?token=AQMTIVUJRKENXZDI3TV7VETHQ56HO">
-      <img alt="Mama CLI" src="https://raw.githubusercontent.com/ItPohgero/mama-cli/refs/heads/main/src/assets/logo.png" height="130" style="max-width: 100%;">
+      <img alt="Tailwind CSS" src="https://raw.githubusercontent.com/dev-mataraman/mataraman.dev/379cbf6117e08bdf8913b5ad041dc70bfdf1dea4/public/logo.svg?token=AQMTIVUJRKENXZDI3TV7VETHQ56HO" width="350" height="70" style="max-width: 100%;">
     </picture>
   </a>
 </p>
@@ -19,62 +19,28 @@
 
 Like a loving mother who raises her child, mama-cli will accompany you to grow in the world of technology. Mama-cli provides various commands that are ready for us to use to create new init projects and contribute to existing projects.
 
-
-## Install Mama CLI and Commands Usage
-#### NPM
+## Install
+NPM
 ```bash
-# global install
 npm i -g mama-cli
-# usage
-mama <command> [options]
-
-# local install
-npm i mama-cli
-# usage
-npx mama <command> [options]
 ```
-#### YARN
+YARN
 ```bash
-# global install
 yarn global add mama-cli
-# usage
-mama <command> [options]
-
-# local install
-yarn add mama-cli
-# usage
-yarn mama <command> [options]
 ```
-#### PNPM
+PNPM
 ```bash
-# global install
 pnpm add -g mama-cli
-# usage
-mama <command> [options]
-
-# local install
-pnpm add mama-cli
-# usage
-pnpx mama <command> [options]
-
 ```
-####  BUN
+BUN
 ```bash
-# global install
 bun add -g mama-cli
-# usage
-mama <command> [options]
-
-# local install
-bun add mama-cli
-# usage
-bunx mama <command> [options]
 ```
 
 ---
 ## Commands
 
-#### Usage
+### Usage
 ```bash
 mama <command> [options]
 ```
@@ -84,30 +50,38 @@ Options:
   -v, --version   Show version number
   -h, --help      Display help for commands
 ```
-
-#### Create New Project
-If you need to create a new project, you can use the following command:
+### Create New Project
 ```bash
 mama create <name>
 ```
-
-#### Init
+```bash
+Mama CLI : Like a mama who helps her child grow.
+? Select project boilerplate: (Use arrow keys)
+❯ Frontend NextJs
+  Fullstack NextJs
+  Mobile Flutter
+  Service (Bun + Hono)
+  Service (Golang)
+```
+## Init
 Initial for the existing project
 ```bash
 mama init [type]     Initialize for existing project <type> application default next
 ```
 
 ---
-## Type Project (Boilerplate)
 
-- **Nextjs**: Next.js project.
-- **Angular**: Angular project.
+## Features
+
+- **Feature 1**: Brief description of the feature.
+- **Feature 2**: Brief description of the feature.
+- **Feature 3**: Brief description of the feature.
 
 ---
 
 ## Documentation
 
-For comprehensive guides and references, visit our official [documentation](https://mama.mataraman.dev).
+For comprehensive guides and API references, visit our official [documentation](https://your-documentation-link.com).
 
 ---
 
@@ -122,9 +96,7 @@ Join the conversation and connect with other users:
 
 ## 🛠️ Contributing
 
-We warmly welcome contributions from everyone! Check out our [contributing guide](https://github.com/ItPohgero/mama-cli/blob/main/CONTRIBUTING.md) for detailed instructions on how to get started. Be sure to adhere to our [code of conduct](https://github.com/ItPohgero/mama-cli/blob/main/CODE_OF_CONDUCT.md). 
-
-Join us in making **Mama CLI** better, and become part of a growing community of engineers and IT enthusiasts!
+We welcome contributions! Please check out our [contributing guide](https://github.com/ItPohgero/mama-cli/blob/main/CONTRIBUTING.md) for details on how to get started. Make sure to follow our [code of conduct](https://github.com/ItPohgero/mama-cli/blob/main/CODE_OF_CONDUCT.md).
 
 ---
 
@@ -135,5 +107,5 @@ This project is licensed under the [MIT License](https://github.com/ItPohgero/ma
 ---
 
 <p align="center">
-  Made with ❤️ by <a href="https://mataraman.dev" target="_blank">Mataraman Dev</a> and <a href="https://itpohgero.com" target="_blank">ItPohgero</a>
+  Made with ❤️ by <a href="https://mataraman.dev" target="_blank">Mataraman Dev</a>
 </p>

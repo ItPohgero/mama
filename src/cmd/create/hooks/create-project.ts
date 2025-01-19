@@ -3,6 +3,7 @@ import path from "node:path";
 import { TEMPLATES } from "@/cmd/create";
 import type { TypeOptions } from "@/configs/types";
 import { copyDir } from "@/hooks/use_copy_dir";
+import chalk from "chalk";
 
 export const createProject = (TypeOptions: TypeOptions, name: string): void => {
 	const template = TEMPLATES[TypeOptions];
@@ -16,8 +17,13 @@ export const createProject = (TypeOptions: TypeOptions, name: string): void => {
 	if (!fs.existsSync(projectPath)) {
 		fs.mkdirSync(projectPath, { recursive: true });
 	}
-	// Copy template files
-	copyDir(template.path, projectPath, (progress) => {
-		process.stdout.write(`\rProgress: ${Math.round(progress)}%`);
+	copyDir(template.path, projectPath, {
+		ignore: [".next", "node_modules", ".git", "dist"], // Add folders or files to ignore
+		onProgress: ({ percent, file, size }) => {
+			// console.log(`${percent}% - Copying ${file} (${(size / 1024).toFixed(2)} KB)`);
+			console.log(
+				`${percent}% - ${chalk.green(file)} (${(size / 1024).toFixed(2)} KB)`,
+			);
+		},
 	});
 };

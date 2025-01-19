@@ -15,7 +15,7 @@
 	"bin": {
 		"mama": "./bin/index.js"
 	},
-	"files": ["bin", "README.md", "LICENSE", "src/i18n/text.yaml"],
+	"files": ["bin", "README.md", "LICENSE"],
 	"engines": {
 		"node": ">=18.0.0",
 		"bun": ">=1.0.0"

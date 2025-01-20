@@ -17,7 +17,14 @@ interface FileStructure {
 }
 
 interface MakerConfig {
-	configDirKey: "screen" | "api" | "hook" | "layout" | "call" | "controller" | "schema";
+	configDirKey:
+		| "screen"
+		| "api"
+		| "hook"
+		| "layout"
+		| "call"
+		| "controller"
+		| "schema";
 	templatePath: string;
 	fileStructure: FileStructure;
 	promptMessage?: string;

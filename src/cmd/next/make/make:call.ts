@@ -29,7 +29,7 @@ export const MakeCall = async () => {
 			message: "Enter the call name:",
 		},
 	]);
-	const GET = method === "get"
+	const GET = method === "get";
 	const run_call = useMake({
 		configDirKey: "call",
 		templatePath: GET ? TEMPLATE_QUERY : TEMPLATE_MUTATION,

@@ -34,7 +34,7 @@ const Init = (type: TypeOptions) => {
 			call: "src/services/call",
 			api: "src/api",
 			controller: "src/server/controllers",
-			schema: "src/server/schema"
+			schema: "src/server/schema",
 		},
 		next: {
 			...baseDir,
@@ -74,8 +74,8 @@ type: ${type}
 # Directory configurations
 dir:
 ${Object.entries(dirConfig)
-			.map(([key, value]) => `    ${key}: ${value}`)
-			.join("\n")}
+	.map(([key, value]) => `    ${key}: ${value}`)
+	.join("\n")}
 `;
 
 	useInitConfig(env.configFile, yamlContent);

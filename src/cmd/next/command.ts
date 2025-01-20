@@ -3,10 +3,10 @@ import text from "@/lang/text";
 import type { GroupedCommands } from "@/types/command.type";
 import type { Command } from "commander";
 import { GenComponents } from "./gen/gen:components";
+import { MakeCall } from "./make/make:call";
 import { MakeHooks } from "./make/make:hooks";
 import { MakeLayout } from "./make/make:layout";
 import { MakeScreen } from "./make/make:screen";
-import { MakeCall } from "./make/make:call";
 
 const groupedCommands: GroupedCommands[] = [
 	{

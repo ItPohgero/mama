@@ -1,15 +1,14 @@
-import path from "node:path";
 import type { TypeOptions } from "@/configs/types";
 import type { ProjectChoice, TemplateConfig } from "@/types/create.types";
 
 export const TEMPLATES: Record<TypeOptions, TemplateConfig> = {
 	next: {
-		path: path.join(__dirname, "../../template/next/create"),
+		repo: "https://github.com/dev-mataraman/mama-nextjs-fullstack.git",
 		installCommand: "bun install",
 		startCommand: "bun run dev",
 	},
 	angular: {
-		path: path.join(__dirname, "../../template/angular/create"),
+		repo: "https://github.com/dev-mataraman/mama-nextjs-fullstack.git",
 		installCommand: "bun install",
 		startCommand: "bun run dev",
 	},

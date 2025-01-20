@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import text from "@/lang/text";
 import type { PromptResult } from "@/types/create.types";
 import chalk from "chalk";
@@ -31,12 +30,11 @@ export const Create = (program: Command): void => {
 				if (TypeOptions.includes("next")) {
 					updatePackageJson(process.cwd(), name);
 				}
-				console.log(chalk.green("\n✓ Repository cloned successfully!"));
-				console.log(chalk.cyan("\n✨ NEXT Application ready!"));
+				const template = TEMPLATES[TypeOptions];
+				console.log(chalk.green("\n✓ Application created successfully!"));
 				console.log("\nTo get started:");
-				console.log(chalk.cyan(`cd ${name}`));
-				console.log(chalk.cyan("bun install"));
-				console.log(chalk.cyan("bun run dev"));
+				console.log(chalk.cyan(template.installCommand));
+				console.log(chalk.cyan(template.startCommand));
 				console.log("\nHappy coding guys! 🎉");
 				console.log(chalk.gray("author: @wahyuagusarifin"));
 				console.log(chalk.gray("sponsored: @mataramandev\n"));

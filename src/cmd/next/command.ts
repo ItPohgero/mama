@@ -4,6 +4,7 @@ import type { GroupedCommands } from "@/types/command.type";
 import type { Command } from "commander";
 import { GenComponents } from "./gen/gen:components";
 import { MakeCall } from "./make/make:call";
+import { MakeController } from "./make/make:controller";
 import { MakeHooks } from "./make/make:hooks";
 import { MakeLayout } from "./make/make:layout";
 import { MakeScreen } from "./make/make:screen";
@@ -36,9 +37,9 @@ const groupedCommands: GroupedCommands[] = [
 				action: MakeLayout,
 			},
 			{
-				cmd: "make:api",
-				desc: text.make.api_desc,
-				action: async () => {},
+				cmd: "make:controller",
+				desc: text.make.controller_desc,
+				action: MakeController,
 			},
 			{
 				cmd: "make:call",

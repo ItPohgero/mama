@@ -33,6 +33,7 @@ export const Create = (program: Command): void => {
 				const template = TEMPLATES[TypeOptions];
 				console.log(chalk.green("\n✓ Application created successfully!"));
 				console.log("\nTo get started:");
+				console.log(chalk.cyan(`cd ${name}`));
 				console.log(chalk.cyan(template.installCommand));
 				console.log(chalk.cyan(template.startCommand));
 				console.log("\nHappy coding guys! 🎉");

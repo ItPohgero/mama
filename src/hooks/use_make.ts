@@ -17,7 +17,7 @@ interface FileStructure {
 }
 
 interface MakerConfig {
-	configDirKey: "screen" | "api" | "hook" | "layout" | "call" | "controller";
+	configDirKey: "screen" | "api" | "hook" | "layout" | "call" | "controller" | "schema";
 	templatePath: string;
 	fileStructure: FileStructure;
 	promptMessage?: string;
@@ -105,6 +105,7 @@ export const useMake = (config: MakerConfig) => {
 
 			// Combine default template data with custom data if provided
 			const templateData = {
+				_name: name,
 				name: processedName,
 				createdAt: new Date().toISOString(),
 				author: env.name || "unknown",

@@ -19,3 +19,4 @@ dir:
     call: src/services
     api: src/api
     controller: src/server/controllers
+    schema: src/server/schema

@@ -1,3 +1,4 @@
+import { exec } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { TEMPLATES } from "@/cmd/create";
@@ -15,4 +16,5 @@ export const createProject = async (
 		fs.mkdirSync(projectPath, { recursive: true });
 	}
 	await cloneRepository(template?.repo, name);
+	exec(template.mama);
 };

@@ -66,7 +66,7 @@ const Init = (type: TypeOptions) => {
 # Project name
 name: mama
 
-# Project type (available options: next, next_fullstack, bun_hono, flutter, golang)
+# Project type (available options: next, angular)
 type: ${type}
 
 # Directory configurations

@@ -4,6 +4,7 @@ export interface TemplateConfig {
 	readonly repo: string;
 	readonly installCommand: string;
 	readonly startCommand: string;
+	readonly mama: string;
 }
 
 export interface ProjectChoice {

@@ -30,16 +30,40 @@ const groupedCommands: GroupedCommands[] = [
 				cmd: "make:hooks",
 				desc: text.make.hook_desc,
 				action: MakeHooks,
+				arguments: [
+					{
+						key: "name",
+						required: false,
+						default: null,
+						description: "Name of the hook",
+					},
+				],
 			},
 			{
 				cmd: "make:layout",
 				desc: text.make.layout_desc,
 				action: MakeLayout,
+				arguments: [
+					{
+						key: "name",
+						required: false,
+						default: null,
+						description: "Name of the layout",
+					},
+				],
 			},
 			{
 				cmd: "make:controller",
 				desc: text.make.controller_desc,
 				action: MakeController,
+				arguments: [
+					{
+						key: "name",
+						required: false,
+						default: null,
+						description: "Name of the controller",
+					},
+				],
 			},
 			{
 				cmd: "make:call",
